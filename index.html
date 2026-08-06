@@ -1,2787 +1,871 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LÂMPADA DIGITAL— Iluminando ideias. Desenvolvendo resultados.</title>
-    <meta name="description" content="Agência especializada em desenvolvimento de sites, sistemas e aplicações web. Transformamos ideias em soluções digitais que brilham.">
-    
-    <!-- Favicon SVG inline (Lâmpada amarela com figura preta) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'%3E%3Cpath d='M50 10 C25 10, 10 30, 10 55 C10 75, 25 85, 30 95 L30 110 L70 110 L70 95 C75 85, 90 75, 90 55 C90 30, 75 10, 50 10 Z' fill='%23FFE600'/%3E%3Cpath d='M35 110 L35 125 L65 125 L65 110 Z' fill='%23FFE600'/%3E%3Cline x1='35' y1='115' x2='65' y2='115' stroke='%230A0A0A' stroke-width='1'/%3E%3Cline x1='35' y1='120' x2='65' y2='120' stroke='%230A0A0A' stroke-width='1'/%3E%3Ccircle cx='50' cy='45' r='8' fill='%230A0A0A'/%3E%3Cpath d='M42 60 Q50 55 58 60 L58 85 Q50 90 42 85 Z' fill='%230A0A0A'/%3E%3Cpath d='M42 60 L35 75 L40 77 L45 65 Z' fill='%230A0A0A'/%3E%3Cpath d='M58 60 L65 75 L60 77 L55 65 Z' fill='%230A0A0A'/%3E%3C/svg%3E">
-    
-    <!-- Fallback favicon PNG para navegadores antigos -->
-    <link rel="alternate icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABhklEQVR4nO2YzU7CQBSFv4KJiYmJL+ALuHDlC/gCvoAbXsANLnwBN7jwBdzgBkRjYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJi......" type="image/png">
-    
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'%3E%3Cpath d='M50 10 C25 10, 10 30, 10 55 C10 75, 25 85, 30 95 L30 110 L70 110 L70 95 C75 85, 90 75, 90 55 C90 30, 75 10, 50 10 Z' fill='%23FFE600'/%3E%3Cpath d='M35 110 L35 125 L65 125 L65 110 Z' fill='%23FFE600'/%3E%3Ccircle cx='50' cy='45' r='8' fill='%230A0A0A'/%3E%3Cpath d='M42 60 Q50 55 58 60 L58 85 Q50 90 42 85 Z' fill='%230A0A0A'/%3E%3C/svg%3E">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* ============================================
-           VARIÁVEIS E RESET
-           ============================================ */
-        :root {
-            --yellow: #FFE600;
-            --yellow-dark: #E6CF00;
-            --yellow-light: #FFF176;
-            --yellow-glow: rgba(255, 230, 0, 0.3);
-            --black: #0A0A0A;
-            --black-soft: #141414;
-            --gray-dark: #1F1F1F;
-            --gray: #2A2A2A;
-            --gray-light: #888888;
-            --white: #FAFAFA;
-            
-            --font-display: 'Space Grotesk', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --transition-slow: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background-color: var(--black);
-            color: var(--white);
-            line-height: 1.6;
-            overflow-x: hidden;
-            cursor: none;
-        }
-
-        ::selection {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-        /* ============================================
-           CURSOR PERSONALIZADO
-           ============================================ */
-        .cursor {
-            width: 30px;
-            height: 30px;
-            border: 2px solid var(--yellow);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
-        }
-
-        .cursor-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--yellow);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-        }
-
-        .cursor.hover {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 230, 0, 0.2);
-        }
-
-        /* ============================================
-           LOADING SCREEN
-           ============================================ */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--yellow);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-content {
-            text-align: center;
-        }
-
-        .loader-bulb {
-            width: 120px;
-            height: 180px;
-            margin: 0 auto 2rem;
-            position: relative;
-            animation: bulbPulse 1.5s ease-in-out infinite;
-        }
-
-        .loader-bulb svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 0 30px rgba(10, 10, 10, 0.5));
-        }
-
-        @keyframes bulbPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .loader-text {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--black);
-            letter-spacing: 0.5rem;
-            animation: fadeIn 1s ease;
-        }
-
-        .loader-subtext {
-            font-size: 0.9rem;
-            color: var(--gray-dark);
-            margin-top: 0.5rem;
-            letter-spacing: 0.2rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ============================================
-           NAVEGAÇÃO
-           ============================================ */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: var(--transition);
-            background: transparent;
-        }
-
-        .navbar.scrolled {
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(20px);
-            padding: 1rem 5%;
-            border-bottom: 1px solid var(--gray);
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            text-decoration: none;
-        }
-
-        .nav-logo-icon {
-            width: 45px;
-            height: 45px;
-            transition: var(--transition);
-        }
-
-        .nav-logo:hover .nav-logo-icon {
-            transform: rotate(10deg);
-        }
-
-        .nav-logo-text {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--yellow);
-            letter-spacing: 0.2rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-menu a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.05rem;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--yellow);
-            transition: var(--transition);
-        }
-
-        .nav-menu a:hover {
-            color: var(--yellow);
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.8rem 1.8rem;
-            font-family: var(--font-body);
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.1rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            border: 2px solid var(--yellow);
-        }
-
-        .nav-cta:hover {
-            background: transparent;
-            color: var(--yellow);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            width: 30px;
-            height: 3px;
-            background: var(--yellow);
-            transition: var(--transition);
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        /* ============================================
-           HERO SECTION
-           ============================================ */
-        .hero {
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            background: var(--black);
-            padding: 8rem 5% 5rem;
-        }
-
-        .hero-bg-glow {
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(255, 230, 0, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            animation: glowPulse 4s ease-in-out infinite;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.8; }
-        }
-
-        .hero-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 230, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 230, 0, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: 1;
-        }
-
-        .hero-bulb-decoration {
-            position: absolute;
-            right: 10%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 400px;
-            height: 600px;
-            opacity: 0.1;
-            z-index: 1;
-        }
-
-        .hero-bulb-decoration svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 1200px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--gray-dark);
-            border: 1px solid var(--gray);
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--yellow);
-            margin-bottom: 2rem;
-            font-weight: 500;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.3s forwards;
-        }
-
-        .hero-badge i {
-            font-size: 0.7rem;
-        }
-
-        .hero-title {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 9vw, 7rem);
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 2rem;
-            letter-spacing: -0.02em;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.5s forwards;
-        }
-
-        .hero-title .highlight {
-            color: var(--yellow);
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero-title .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: var(--yellow);
-            opacity: 0.3;
-            z-index: -1;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: var(--gray-light);
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            font-weight: 400;
-            line-height: 1.6;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.7s forwards;
-        }
-
-        .hero-ctas {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.9s forwards;
-        }
-
-        .btn-primary {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 1.2rem 2.5rem;
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.1rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            border: 2px solid var(--yellow);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--yellow);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 230, 0, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            padding: 1.2rem 2.5rem;
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.1rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            border: 2px solid var(--gray);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--yellow);
-            color: var(--yellow);
-            transform: translateY(-3px);
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin-top: 5rem;
-            padding-top: 3rem;
-            border-top: 1px solid var(--gray);
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 1.1s forwards;
-            flex-wrap: wrap;
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .hero-stat-number {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--yellow);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-stat-label {
-            font-size: 0.85rem;
-            color: var(--gray-light);
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ============================================
-           SEÇÕES GERAIS
-           ============================================ */
-        section {
-            padding: 8rem 5%;
-            position: relative;
-        }
-
-        .section-label {
-            font-family: var(--font-display);
-            font-size: 0.85rem;
-            letter-spacing: 0.3rem;
-            text-transform: uppercase;
-            color: var(--yellow);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .section-label::before {
-            content: '';
-            width: 30px;
-            height: 2px;
-            background: var(--yellow);
-        }
-
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            letter-spacing: -0.02em;
-        }
-
-        .section-title .highlight {
-            color: var(--yellow);
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--gray-light);
-            max-width: 700px;
-            line-height: 1.7;
-        }
-
-        /* ============================================
-           SEÇÃO SOBRE
-           ============================================ */
-        .about {
-            background: var(--black);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            align-items: center;
-        }
-
-        .about-visual {
-            position: relative;
-        }
-
-        .about-bulb {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .about-bulb svg {
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 0 60px rgba(255, 230, 0, 0.3));
-        }
-
-        .about-bulb-rays {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(circle, rgba(255, 230, 0, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--gray-light);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .about-feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .about-feature-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--yellow);
-            color: var(--black);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-            font-size: 1.2rem;
-        }
-
-        .about-feature-text h4 {
-            font-family: var(--font-display);
-            font-size: 1rem;
-            color: var(--white);
-            margin-bottom: 0.3rem;
-        }
-
-        .about-feature-text p {
-            font-size: 0.85rem;
-            color: var(--gray-light);
-            margin: 0;
-        }
-
-        /* ============================================
-           SEÇÃO SERVIÇOS
-           ============================================ */
-        .services {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-        .services .section-label {
-            color: var(--black);
-        }
-
-        .services .section-label::before {
-            background: var(--black);
-        }
-
-        .services .section-subtitle {
-            color: var(--gray-dark);
-        }
-
-        .services-header {
-            max-width: 1400px;
-            margin: 0 auto 5rem;
-        }
-
-        .services-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--black);
-            color: var(--white);
-            padding: 3rem 2rem;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 2px solid transparent;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--yellow);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: var(--transition);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--yellow);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--yellow);
-            color: var(--black);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            transition: var(--transition);
-        }
-
-        .service-card:hover .service-icon {
-            transform: rotate(10deg) scale(1.1);
-        }
-
-        .service-number {
-            font-family: var(--font-display);
-            font-size: 0.85rem;
-            color: var(--yellow);
-            letter-spacing: 0.2rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .service-title {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-
-        .service-description {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--gray-light);
-            margin-bottom: 2rem;
-        }
-
-        .service-link {
-            color: var(--yellow);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.1rem;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
-        }
-
-        .service-link:hover {
-            gap: 1rem;
-        }
-
-        /* ============================================
-           SEÇÃO PROJETOS
-           ============================================ */
-        .projects {
-            background: var(--black);
-        }
-
-        .projects-header {
-            max-width: 1400px;
-            margin: 0 auto 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .projects-filters {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .project-filter {
-            background: transparent;
-            border: 1px solid var(--gray);
-            color: var(--white);
-            padding: 0.7rem 1.5rem;
-            font-family: var(--font-body);
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .project-filter.active,
-        .project-filter:hover {
-            background: var(--yellow);
-            color: var(--black);
-            border-color: var(--yellow);
-        }
-
-        .projects-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .project-card {
-            position: relative;
-            overflow: hidden;
-            background: var(--gray-dark);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 400px;
-            background: var(--gray);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition-slow);
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, transparent 60%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 2rem;
-            transition: var(--transition);
-        }
-
-        .project-category {
-            font-size: 0.75rem;
-            letter-spacing: 0.2rem;
-            text-transform: uppercase;
-            color: var(--yellow);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .project-title {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 0.5rem;
-        }
-
-        .project-description {
-            font-size: 0.9rem;
-            color: var(--gray-light);
-            line-height: 1.6;
-        }
-
-        .project-tech {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .project-tech-tag {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.3rem 0.8rem;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.05rem;
-        }
-
-        .project-arrow {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--yellow);
-            color: var(--black);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            opacity: 0;
-            transform: translate(-10px, 10px);
-            transition: var(--transition);
-        }
-
-        .project-card:hover .project-arrow {
-            opacity: 1;
-            transform: translate(0, 0);
-        }
-
-        /* ============================================
-           SEÇÃO PROCESSO
-           ============================================ */
-        .process {
-            background: var(--black-soft);
-        }
-
-        .process-header {
-            max-width: 1400px;
-            margin: 0 auto 5rem;
-            text-align: center;
-        }
-
-        .process-header .section-subtitle {
-            margin: 0 auto;
-        }
-
-        .process-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            position: relative;
-        }
-
-        .process-grid::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 10%;
-            right: 10%;
-            height: 2px;
-            background: var(--gray);
-            z-index: 0;
-        }
-
-        .process-step {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .process-step-number {
-            width: 80px;
-            height: 80px;
-            background: var(--yellow);
-            color: var(--black);
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 700;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 2rem;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .process-step:hover .process-step-number {
-            transform: scale(1.1) rotate(10deg);
-        }
-
-        .process-step-number::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 2px solid var(--yellow);
-            opacity: 0.3;
-        }
-
-        .process-step-title {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-
-        .process-step-description {
-            font-size: 0.9rem;
-            color: var(--gray-light);
-            line-height: 1.6;
-        }
-
-        /* ============================================
-           SEÇÃO TECNOLOGIAS
-           ============================================ */
-        .tech {
-            background: var(--black);
-        }
-
-        .tech-header {
-            max-width: 1400px;
-            margin: 0 auto 5rem;
-            text-align: center;
-        }
-
-        .tech-header .section-subtitle {
-            margin: 0 auto;
-        }
-
-        .tech-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 1.5rem;
-        }
-
-        .tech-item {
-            background: var(--gray-dark);
-            border: 1px solid var(--gray);
-            padding: 2rem 1rem;
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .tech-item:hover {
-            background: var(--yellow);
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-        }
-
-        .tech-item:hover .tech-name {
-            color: var(--black);
-        }
-
-        .tech-item i {
-            font-size: 2.5rem;
-            color: var(--yellow);
-            margin-bottom: 1rem;
-            transition: var(--transition);
-        }
-
-        .tech-item:hover i {
-            color: var(--black);
-        }
-
-        .tech-name {
-            font-family: var(--font-display);
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--white);
-            transition: var(--transition);
-        }
-
-        /* ============================================
-           SEÇÃO EQUIPE
-           ============================================ */
-        .team {
-            background: var(--black-soft);
-        }
-
-        .team-header {
-            max-width: 1400px;
-            margin: 0 auto 5rem;
-            text-align: center;
-        }
-
-        .team-header .section-subtitle {
-            margin: 0 auto;
-        }
-
-        .team-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .team-member {
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-        }
-
-        .team-image {
-            width: 100%;
-            aspect-ratio: 1;
-            background: var(--gray-dark);
-            border-radius: 50%;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-            border: 3px solid var(--yellow);
-            transition: var(--transition);
-        }
-
-        .team-member:hover .team-image {
-            box-shadow: 0 0 40px var(--yellow-glow);
-        }
-
-        .team-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .team-member:hover .team-image img {
-            transform: scale(1.1);
-        }
-
-        .team-name {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 0.3rem;
-        }
-
-        .team-role {
-            font-size: 0.85rem;
-            color: var(--yellow);
-            margin-bottom: 0.5rem;
-        }
-
-        .team-bio {
-            font-size: 0.85rem;
-            color: var(--gray-light);
-            line-height: 1.5;
-        }
-
-        /* ============================================
-           SEÇÃO DEPOIMENTOS
-           ============================================ */
-        .testimonials {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-        .testimonials .section-label {
-            color: var(--black);
-        }
-
-        .testimonials .section-label::before {
-            background: var(--black);
-        }
-
-        .testimonials-header {
-            max-width: 1400px;
-            margin: 0 auto 5rem;
-        }
-
-        .testimonials-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .testimonial-card {
-            background: var(--black);
-            color: var(--white);
-            padding: 3rem 2rem;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .testimonial-quote-icon {
-            font-family: var(--font-display);
-            font-size: 5rem;
-            color: var(--yellow);
-            line-height: 1;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-text {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: var(--gray-light);
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--gray);
-        }
-
-        .testimonial-author img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--yellow);
-        }
-
-        .testimonial-author-info h4 {
-            font-family: var(--font-display);
-            font-size: 1rem;
-            color: var(--white);
-            margin-bottom: 0.2rem;
-        }
-
-        .testimonial-author-info p {
-            font-size: 0.8rem;
-            color: var(--yellow);
-        }
-
-        .testimonial-stars {
-            color: var(--yellow);
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        /* ============================================
-           SEÇÃO CTA
-           ============================================ */
-        .cta {
-            background: var(--black);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(255, 230, 0, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .cta-title {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-        }
-
-        .cta-title .highlight {
-            color: var(--yellow);
-        }
-
-        .cta-subtitle {
-            font-size: 1.2rem;
-            color: var(--gray-light);
-            margin-bottom: 3rem;
-            line-height: 1.7;
-        }
-
-        /* ============================================
-           SEÇÃO CONTATO
-           ============================================ */
-        .contact {
-            background: var(--black-soft);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .contact-info h3 {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-        }
-
-        .contact-info h3 .highlight {
-            color: var(--yellow);
-        }
-
-        .contact-info > p {
-            font-size: 1.1rem;
-            color: var(--gray-light);
-            line-height: 1.8;
-            margin-bottom: 3rem;
-        }
-
-        .contact-details {
-            margin-bottom: 3rem;
-        }
-
-        .contact-detail {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--gray);
-        }
-
-        .contact-detail-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--yellow);
-            color: var(--black);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .contact-detail-content h4 {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            color: var(--white);
-            margin-bottom: 0.3rem;
-        }
-
-        .contact-detail-content p,
-        .contact-detail-content a {
-            color: var(--gray-light);
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .contact-detail-content a:hover {
-            color: var(--yellow);
-        }
-
-        .contact-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .contact-social a {
-            width: 50px;
-            height: 50px;
-            border: 1px solid var(--gray);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--white);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 1.2rem;
-        }
-
-        .contact-social a:hover {
-            background: var(--yellow);
-            border-color: var(--yellow);
-            color: var(--black);
-            transform: translateY(-3px);
-        }
-
-        .contact-form {
-            background: var(--gray-dark);
-            padding: 3rem;
-            border: 1px solid var(--gray);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            color: var(--yellow);
-            font-size: 0.8rem;
-            letter-spacing: 0.15rem;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: var(--black);
-            border: 1px solid var(--gray);
-            color: var(--white);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--yellow);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .form-submit {
-            width: 100%;
-            background: var(--yellow);
-            color: var(--black);
-            padding: 1.2rem;
-            border: 2px solid var(--yellow);
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.15rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .form-submit:hover {
-            background: transparent;
-            color: var(--yellow);
-        }
-
-        /* ============================================
-           FOOTER
-           ============================================ */
-        .footer {
-            background: var(--black);
-            padding: 5rem 5% 2rem;
-            border-top: 1px solid var(--gray);
-        }
-
-        .footer-top {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
-            max-width: 1400px;
-            margin: 0 auto 4rem;
-        }
-
-        .footer-brand .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-brand .footer-logo-text {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--yellow);
-            letter-spacing: 0.2rem;
-        }
-
-        .footer-brand p {
-            color: var(--gray-light);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            max-width: 400px;
-        }
-
-        .footer-col h4 {
-            font-family: var(--font-display);
-            color: var(--white);
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.1rem;
-        }
-
-        .footer-col a,
-        .footer-col p {
-            color: var(--gray-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            line-height: 2.2;
-            transition: var(--transition);
-            display: block;
-        }
-
-        .footer-col a:hover {
-            color: var(--yellow);
-            padding-left: 5px;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--gray);
-            padding-top: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-bottom p {
-            color: var(--gray-light);
-            font-size: 0.85rem;
-        }
-
-        .footer-bottom-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-bottom-links a {
-            color: var(--gray-light);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: var(--transition);
-        }
-
-        .footer-bottom-links a:hover {
-            color: var(--yellow);
-        }
-
-        /* ============================================
-           WHATSAPP FLOATING
-           ============================================ */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.8rem;
-            text-decoration: none;
-            z-index: 999;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
-            transition: var(--transition);
-            animation: whatsappPulse 2s infinite;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-
-        @keyframes whatsappPulse {
-            0%, 100% { box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); }
-            50% { box-shadow: 0 5px 30px rgba(37, 211, 102, 0.7); }
-        }
-
-        /* ============================================
-           ANIMAÇÕES DE SCROLL
-           ============================================ */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ============================================
-           RESPONSIVO
-           ============================================ */
-        @media (max-width: 1024px) {
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-            }
-
-            .services-grid,
-            .testimonials-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .process-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .process-grid::before {
-                display: none;
-            }
-
-            .tech-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-top {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .cursor, .cursor-dot {
-                display: none;
-            }
-
-            body {
-                cursor: auto;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 100%;
-                height: 100vh;
-                background: var(--black);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: var(--transition);
-                gap: 2rem;
-            }
-
-            .nav-menu.active {
-                right: 0;
-            }
-
-            .nav-menu a {
-                font-size: 1.2rem;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-cta {
-                display: none;
-            }
-
-            section {
-                padding: 5rem 5%;
-            }
-
-            .services-grid,
-            .testimonials-grid,
-            .process-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tech-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-features {
-                grid-template-columns: 1fr;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-form {
-                padding: 2rem;
-            }
-
-            .footer-top {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero-stats {
-                gap: 2rem;
-            }
-
-            .hero-stat-number {
-                font-size: 2rem;
-            }
-
-            .hero-bulb-decoration {
-                display: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-ctas {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .projects-filters {
-                width: 100%;
-            }
-
-            .project-filter {
-                flex: 1;
-                text-align: center;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lâmpada Digital | Design, Desenvolvimento e Estratégia Digital</title>
+<meta name="description" content="Estúdio de design e desenvolvimento digital. Criamos marcas, sites e experiências digitais com foco em resultado. Portfólio com mais de 13 projetos entregues.">
+<link rel="canonical" href="https://lampadadigital.com.br/">
+<meta name="theme-color" content="#0a0a0a">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://lampadadigital.com.br/">
+<meta property="og:title" content="Lâmpada Digital | Design, Desenvolvimento e Estratégia Digital">
+<meta property="og:description" content="Mais de 13 projetos entregues para empresas de diversos segmentos. Design exclusivo, desenvolvimento ágil e estratégia orientada a resultado.">
+<meta property="og:image" content="https://lampadadigital.com.br/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- ===== FAVICON: icone.png da pasta lampada digital ===== -->
+<link rel="icon" type="image/png" href="icone.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService",
+ "name":"Lâmpada Digital","description":"Estúdio de design e desenvolvimento digital. Criamos marcas, sites e experiências orientadas a resultado.",
+ "url":"https://lampadadigital.com.br","telephone":"+55-11-9479-0523",
+ "email":"contato@lampadadigital.com.br","areaServed":"BR",
+ "aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"13"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Quanto custa um site ou uma identidade visual?","acceptedAnswer":{"@type":"Answer","text":"O valor varia conforme o escopo. Oferecemos orçamento personalizado e gratuito, entregue em até 24 horas úteis."}},
+ {"@type":"Question","name":"Qual o prazo médio de entrega?","acceptedAnswer":{"@type":"Answer","text":"Identidades visuais entre 5 e 10 dias úteis. Sites institucionais entre 7 e 15 dias úteis, conforme complexidade."}},
+ {"@type":"Question","name":"Os sites são otimizados para mecanismos de busca?","acceptedAnswer":{"@type":"Answer","text":"Sim. Todos os projetos incluem SEO técnico, dados estruturados (Schema.org), performance otimizada e estrutura semântica."}},
+ {"@type":"Question","name":"Existe suporte após a entrega do projeto?","acceptedAnswer":{"@type":"Answer","text":"Sim. Oferecemos acompanhamento pós-entrega com suporte técnico e evolução contínua conforme necessidade do cliente."}}]}
+</script>
+
+<style>
+:root{
+  --bg:#0a0a0a; --bg2:#0f0f0f; --card:#141414; --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
+  --yellow:#E8C547; --yellow-soft:rgba(232,197,71,.12); --gold:linear-gradient(180deg,#F5D76E,#D4A92E);
+  --text:#EDEDED; --muted:#8A8A8A; --muted-2:#B5B5B5;
+  --success:#4ade80; --error:#f87171;
+  --r:14px; --tr:.4s cubic-bezier(.2,.7,.3,1);
+  --serif:'Playfair Display', Georgia, serif;
+  --sans:'Inter', system-ui, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.loading{overflow:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.container{width:min(1180px,92%);margin-inline:auto}
+section{padding:110px 0}
+::selection{background:var(--yellow);color:#111}
+
+/* ========== INTRO / PRELOADER ========== */
+.intro{position:fixed;inset:0;z-index:9999;background:#050505;display:grid;place-items:center;transition:opacity .8s ease,visibility .8s ease;overflow:hidden}
+.intro.fade-out{opacity:0;visibility:hidden;pointer-events:none}
+.intro::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(232,197,71,.08) 0%,transparent 60%);animation:intro-glow 2.8s ease-in-out infinite}
+@keyframes intro-glow{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+.intro-content{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.6rem}
+.intro-glow-ring{position:absolute;inset:-40%;border-radius:50%;border:1px solid rgba(232,197,71,.3);opacity:0;animation:intro-ring 2.5s ease-out 1s forwards;pointer-events:none}
+.intro-glow-ring.r2{animation-delay:1.3s}
+.intro-glow-ring.r3{animation-delay:1.6s}
+@keyframes intro-ring{0%{opacity:0;transform:scale(.6)}50%{opacity:.6}100%{opacity:0;transform:scale(1.4)}}
+/* Logo real (logo.png) "acendendo" */
+.intro-logo{height:180px;aspect-ratio:1;object-fit:cover;object-position:center;mix-blend-mode:screen;filter:drop-shadow(0 0 34px rgba(232,197,71,.5));opacity:0;animation:intro-light 1.9s ease-out .2s forwards}
+@keyframes intro-light{
+  0%{opacity:0;transform:scale(.92)}
+  8%{opacity:.5}14%{opacity:.15}24%{opacity:.9}32%{opacity:.4}
+  45%,100%{opacity:1;transform:scale(1)}
+}
+.intro-text{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;letter-spacing:.08em;color:#fff;opacity:0;transform:translateY(10px);animation:intro-text-in .8s ease-out 1.4s forwards}
+.intro-text span{color:var(--yellow)}
+.intro-sub{font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;color:var(--muted-2);font-weight:500;opacity:0;animation:intro-text-in .8s ease-out 1.7s forwards}
+@keyframes intro-text-in{to{opacity:1;transform:translateY(0)}}
+.intro-loader{margin-top:.4rem;width:120px;height:1px;background:rgba(255,255,255,.1);overflow:hidden;opacity:0;animation:intro-text-in .8s ease-out 1.9s forwards}
+.intro-loader::after{content:"";display:block;height:100%;width:0;background:var(--yellow);animation:intro-load 1.1s ease-out 1.9s forwards}
+@keyframes intro-load{to{width:100%}}
+
+/* ========== BASE ========== */
+.kicker{display:inline-flex;align-items:center;gap:.8rem;color:var(--yellow);font-weight:500;font-size:.75rem;letter-spacing:.32em;text-transform:uppercase;margin-bottom:1.2rem}
+.kicker::before{content:"";width:40px;height:1px;background:var(--yellow)}
+h1,h2,h3{font-family:var(--serif);line-height:1.15;font-weight:700;letter-spacing:-.01em}
+h2{font-size:clamp(1.9rem,3.6vw,2.8rem);margin:.4rem 0 1rem}
+.section-head p{color:var(--muted-2);max-width:640px;font-size:1.02rem}
+.hl{color:var(--yellow);font-style:italic}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.95rem 1.6rem;border-radius:999px;font-weight:600;font-size:.88rem;border:0;cursor:pointer;transition:var(--tr);letter-spacing:.01em;font-family:var(--sans)}
+.btn svg{width:14px;height:14px}
+.btn-primary{background:var(--gold);color:#111}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 14px 36px rgba(232,197,71,.32)}
+.btn-ghost{border:1px solid var(--line-2);color:var(--text);background:transparent}
+.btn-ghost:hover{border-color:var(--yellow);color:var(--yellow)}
+.btn-dark{background:#111;color:var(--yellow);border:1px solid #222}
+.btn-dark:hover:not(:disabled){transform:translateY(-2px);border-color:var(--yellow)}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.btn .spinner{display:none;width:14px;height:14px;border:2px solid rgba(17,17,17,.25);border-top-color:#111;border-radius:50%;animation:spin .8s linear infinite}
+.btn.loading .spinner{display:inline-block}
+.btn.loading .btn-label{opacity:.6}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* HEADER */
+header{position:fixed;inset:0 0 auto;z-index:100;transition:var(--tr);padding:20px 0}
+header.scrolled{background:rgba(10,10,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:12px 0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:.85rem}
+.brand-img{height:44px;width:44px;object-fit:cover;object-position:center;mix-blend-mode:screen}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-text strong{letter-spacing:.28em;font-weight:700;font-size:.9rem}
+.brand-text small{color:var(--yellow);letter-spacing:.48em;font-weight:500;font-size:.6rem;margin-top:3px}
+.nav-links{display:flex;gap:2rem;font-weight:500;font-size:.88rem}
+.nav-links a{position:relative;color:#CDCDCD;transition:color .3s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--yellow);transition:var(--tr)}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:.65rem 1.25rem;font-size:.82rem}
+.menu-btn{display:none;background:none;border:0;color:var(--text);font-size:1.3rem;cursor:pointer}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;align-items:center;padding:160px 0 90px;position:relative;
+  background:radial-gradient(60% 45% at 70% 10%,rgba(232,197,71,.08),transparent 70%),
+             radial-gradient(40% 35% at 15% 80%,rgba(232,197,71,.04),transparent 70%)}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:3.5rem;align-items:center}
+.hero h1{font-size:clamp(2.1rem,4.8vw,3.6rem);margin:1rem 0 1.4rem;font-weight:700}
+.hero p.lead{color:var(--muted-2);font-size:1.06rem;max-width:560px;margin-bottom:2.4rem}
+.hero-ctas{display:flex;gap:.9rem;flex-wrap:wrap}
+.hero-note{margin-top:1.4rem;font-size:.8rem;color:var(--muted);display:flex;gap:1.4rem;flex-wrap:wrap}
+.hero-note span::before{content:"—";color:var(--yellow);margin-right:.5rem}
+.hero-visual{position:relative;display:grid;place-items:center}
+.hero-visual::before{content:"";position:absolute;width:min(440px,92%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(232,197,71,.18),transparent 65%);animation:pulse 5s ease-in-out infinite}
+.hero-logo-img{height:min(440px,72vw);aspect-ratio:1;object-fit:cover;object-position:center;mix-blend-mode:screen;animation:float 7s ease-in-out infinite;position:relative}
+.hero-stats{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);display:flex;gap:2rem;background:rgba(20,20,20,.92);backdrop-filter:blur(14px);border:1px solid var(--line-2);border-radius:12px;padding:1.1rem 2rem;z-index:3}
+.hero-stat{text-align:center}
+.hero-stat b{display:block;font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--yellow);line-height:1}
+.hero-stat span{font-size:.7rem;color:var(--muted-2);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;display:block}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.05);opacity:.55}}
+
+/* MARQUEE */
+.marquee{border-block:1px solid var(--line);padding:1.4rem 0;overflow:hidden;background:var(--bg2)}
+.marquee-track{display:flex;gap:3.5rem;width:max-content;animation:scroll 32s linear infinite}
+.marquee span{color:#666;font-weight:500;letter-spacing:.22em;text-transform:uppercase;font-size:.75rem;white-space:nowrap}
+.marquee b{color:var(--yellow);font-weight:400;margin:0 1rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* STATS */
+.stats{padding:80px 0;border-bottom:1px solid var(--line)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.stat{text-align:center;padding:1rem;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:var(--serif);font-size:clamp(2.2rem,4.2vw,3.2rem);font-weight:700;color:var(--yellow);line-height:1}
+.stat span{color:var(--muted-2);font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-top:.6rem;display:block}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:3rem;background:var(--line)}
+.card{background:var(--bg);padding:2.4rem 2rem;transition:var(--tr);position:relative}
+.card:hover{background:var(--card)}
+.card .icon{width:44px;height:44px;display:grid;place-items:center;color:var(--yellow);margin-bottom:1.4rem}
+.card .icon svg{width:28px;height:28px;stroke:currentColor;stroke-width:1.4;fill:none}
+.card h3{font-family:var(--serif);font-size:1.2rem;margin-bottom:.6rem;font-weight:600}
+.card p{color:var(--muted-2);font-size:.92rem;line-height:1.65}
+.card-num{position:absolute;top:1.2rem;right:1.4rem;color:#2a2a2a;font-family:var(--serif);font-size:.9rem;font-weight:600}
+
+/* POR QUE NÓS */
+.why-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center}
+.check-list li{display:flex;gap:1rem;margin:1rem 0;color:#ddd;font-weight:500;font-size:.98rem}
+.check-list li::before{content:"";width:18px;height:1px;background:var(--yellow);margin-top:.7rem;flex-shrink:0}
+.compare{background:var(--card);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden}
+.compare-head{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+.compare-head div{padding:1.2rem 1rem;font-weight:600;font-size:.82rem;text-align:center;letter-spacing:.12em;text-transform:uppercase}
+.compare-head div:first-child{background:var(--yellow-soft);color:var(--yellow)}
+.compare-head div:last-child{color:var(--muted)}
+.compare ul{display:grid;grid-template-columns:1fr 1fr}
+.compare li{padding:1rem;font-size:.85rem;border-bottom:1px solid var(--line);text-align:center;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.compare li:nth-child(odd){color:#ddd;font-weight:500}
+.compare li:nth-child(even){color:var(--muted)}
+.compare li svg{width:14px;height:14px;flex-shrink:0}
+
+/* PROCESSO */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.step{padding:2rem 1.5rem;background:var(--card);border:1px solid var(--line);border-radius:var(--r);transition:var(--tr)}
+.step:hover{border-color:var(--yellow-soft);transform:translateY(-4px)}
+.step .num{font-family:var(--serif);font-size:2.4rem;font-weight:700;color:var(--yellow);display:block;margin-bottom:1rem;line-height:1}
+.step h3{font-size:1.05rem;margin-bottom:.5rem;font-family:var(--serif);font-weight:600}
+.step p{color:var(--muted-2);font-size:.88rem}
+
+/* PORTFÓLIO */
+.portfolio{background:var(--bg2);padding-bottom:130px}
+.filter-bar{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:2.5rem 0 3.5rem}
+.filter-btn{background:transparent;border:1px solid var(--line-2);color:var(--muted-2);padding:.55rem 1.25rem;border-radius:999px;font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:var(--tr);font-family:var(--sans)}
+.filter-btn:hover{border-color:var(--yellow);color:var(--yellow)}
+.filter-btn.active{background:var(--yellow);color:#111;border-color:var(--yellow);font-weight:600}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.port{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;transition:var(--tr);cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end}
+.port:hover{transform:translateY(-6px);border-color:rgba(232,197,71,.35);box-shadow:0 22px 55px rgba(0,0,0,.55)}
+.port-visual{position:absolute;inset:0;display:grid;place-items:center;padding:1.5rem;transition:transform .8s ease;overflow:hidden}
+.port:hover .port-visual{transform:scale(1.04)}
+.port-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(0,0,0,.88));pointer-events:none}
+.port-icon{width:72px;height:72px;color:var(--yellow);opacity:.9}
+.port-icon svg{width:100%;height:100%;stroke:currentColor;stroke-width:1.2;fill:none}
+.port-title{position:absolute;top:1.4rem;left:1.4rem;right:1.4rem;z-index:3;font-family:var(--serif);font-size:1.35rem;font-weight:600;line-height:1.15;color:#fff}
+.port-title small{display:block;font-family:var(--sans);font-size:.65rem;font-weight:500;color:var(--yellow);letter-spacing:.24em;text-transform:uppercase;margin-bottom:.45rem}
+.port .tag{position:absolute;top:1.4rem;right:1.4rem;background:var(--yellow);color:#111;font-size:.6rem;font-weight:600;padding:.35rem .75rem;border-radius:4px;letter-spacing:.12em;text-transform:uppercase;z-index:3}
+.port-info{position:relative;z-index:3;padding:1.4rem;background:linear-gradient(transparent,rgba(0,0,0,.95));width:100%;transform:translateY(calc(100% - 65px));transition:var(--tr)}
+.port:hover .port-info{transform:translateY(0)}
+.port-info p{font-size:.82rem;color:#ccc;margin-bottom:.9rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.port-info .view{display:inline-flex;align-items:center;gap:.5rem;color:var(--yellow);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.port-info .view svg{width:12px;height:12px;transition:transform .3s}
+.port:hover .port-info .view svg{transform:translateX(4px)}
+
+.grad-tech{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364)}
+.grad-food{background:linear-gradient(135deg,#3a1c2f,#6b2737,#8b2e3e)}
+.grad-igreja{background:linear-gradient(135deg,#141e30,#243b55)}
+.grad-saude{background:linear-gradient(135deg,#0d3b3e,#1a6b5a)}
+.grad-edu{background:linear-gradient(135deg,#2e1e4a,#5c3a7a)}
+.grad-beauty{background:linear-gradient(135deg,#232526,#3a3028)}
+.grad-vinhos{background:linear-gradient(135deg,#2a0f1f,#6b1f2a)}
+.grad-confeitaria{background:linear-gradient(135deg,#4a2f1f,#8b5a2f)}
+.grad-tattoo{background:linear-gradient(135deg,#000428,#1a1a3e)}
+.grad-rh{background:linear-gradient(135deg,#1e3c72,#2a5298)}
+.grad-contabil{background:linear-gradient(135deg,#0f0c29,#302b63)}
+.grad-log{background:linear-gradient(135deg,#1d2671,#4a2a5a)}
+.grad-software{background:linear-gradient(135deg,#000000,#232526)}
+
+/* DEPOIMENTOS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.testi{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:2.2rem;transition:var(--tr)}
+.testi:hover{border-color:var(--yellow-soft);transform:translateY(-4px)}
+.stars{color:var(--yellow);letter-spacing:.25em;margin-bottom:1.1rem;font-size:.85rem}
+.testi p{font-size:.95rem;color:#ddd;font-style:italic;font-family:var(--serif);line-height:1.55}
+.testi p::before{content:"\201C";font-size:2.5rem;color:var(--yellow);display:block;line-height:1;margin-bottom:.3rem;font-family:var(--serif)}
+.testi footer{margin-top:1.4rem;display:flex;align-items:center;gap:.9rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--gold);color:#111;display:grid;place-items:center;font-weight:700;font-size:.95rem}
+.testi footer b{font-size:.88rem;display:block;font-weight:600}
+.testi footer span{color:var(--muted);font-size:.78rem}
+
+/* FAQ */
+.faq{max-width:780px;margin:3.5rem auto 0}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:.7rem;overflow:hidden;transition:var(--tr)}
+details[open]{border-color:rgba(232,197,71,.3)}
+summary{cursor:pointer;padding:1.3rem 1.5rem;font-weight:600;display:flex;justify-content:space-between;align-items:center;list-style:none;font-size:.98rem}
+summary::after{content:"+";color:var(--yellow);font-size:1.3rem;font-weight:500;transition:var(--tr)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 1.5rem 1.4rem;color:var(--muted-2);font-size:.92rem;line-height:1.7}
+
+/* CTA */
+.cta-banner{background:var(--yellow);border-radius:var(--r);padding:4rem 3rem;text-align:center;color:#111;position:relative;overflow:hidden}
+.cta-banner::before{content:"";position:absolute;top:-50%;right:-20%;width:60%;height:200%;background:radial-gradient(circle,rgba(255,255,255,.2),transparent 60%);pointer-events:none}
+.cta-banner h2{font-size:clamp(1.7rem,3.2vw,2.6rem);margin-bottom:.8rem;position:relative}
+.cta-banner p{font-weight:500;margin-bottom:2rem;color:#2a2a2a;position:relative}
+.cta-banner .btn{position:relative}
+
+/* FORMULÁRIO */
+.form-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start}
+.form-box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:2.5rem}
+.form-box label{font-size:.75rem;font-weight:600;color:var(--muted-2);display:block;margin:1rem 0 .4rem;letter-spacing:.14em;text-transform:uppercase}
+.form-box input,.form-box select,.form-box textarea{width:100%;background:#0d0d0d;border:1px solid var(--line);border-radius:8px;padding:.9rem 1rem;color:var(--text);font-family:inherit;font-size:.92rem;transition:var(--tr)}
+.form-box :is(input,select,textarea):focus{outline:none;border-color:var(--yellow);box-shadow:0 0 0 3px rgba(232,197,71,.1)}
+.form-box textarea{resize:vertical;min-height:110px}
+.form-box .btn{width:100%;margin-top:1.6rem}
+.form-box .btn .btn-label{display:inline-flex;align-items:center;gap:.6rem}
+.honeypot{position:absolute;left:-9999px;opacity:0;pointer-events:none}
+
+/* TOAST */
+.toast-wrap{position:fixed;bottom:28px;right:28px;z-index:10000;display:flex;flex-direction:column;gap:.6rem;pointer-events:none}
+.toast{pointer-events:auto;background:var(--card);border:1px solid var(--line-2);border-radius:10px;padding:1rem 1.4rem;min-width:280px;max-width:360px;display:flex;align-items:center;gap:.8rem;box-shadow:0 20px 50px rgba(0,0,0,.55);transform:translateX(420px);opacity:0;transition:transform .4s cubic-bezier(.2,.7,.3,1),opacity .4s ease}
+.toast.show{transform:translateX(0);opacity:1}
+.toast-icon{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+.toast-icon svg{width:16px;height:16px}
+.toast.success{border-color:rgba(74,222,128,.35)}
+.toast.success .toast-icon{background:rgba(74,222,128,.15);color:var(--success)}
+.toast.error{border-color:rgba(248,113,113,.35)}
+.toast.error .toast-icon{background:rgba(248,113,113,.15);color:var(--error)}
+.toast-body strong{display:block;font-size:.88rem;font-weight:600;margin-bottom:.1rem}
+.toast-body span{font-size:.78rem;color:var(--muted-2);line-height:1.4}
+
+/* FOOTER */
+footer.site{background:#050505;border-top:1px solid var(--line);padding:80px 0 0}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem}
+.foot-grid h4{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.2rem;font-weight:600;font-family:var(--sans)}
+.foot-grid a,.foot-grid p{color:var(--muted-2);font-size:.88rem;display:block;margin:.5rem 0;transition:color .3s}
+.foot-grid a:hover{color:var(--yellow)}
+.foot-brand-img{height:56px;width:56px;object-fit:cover;object-position:center;mix-blend-mode:screen}
+.socials{display:flex;gap:.6rem;margin-top:1.2rem}
+.socials a{width:40px;height:40px;border:1px solid var(--line-2);border-radius:50%;display:grid;place-items:center;color:#bbb;margin:0;transition:var(--tr)}
+.socials a:hover{background:var(--yellow);color:#111;border-color:var(--yellow);transform:translateY(-2px)}
+.socials a svg{width:16px;height:16px}
+.foot-bottom{border-top:1px solid var(--line);margin-top:3.5rem;padding:1.4rem 0;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:#666;font-size:.78rem}
+.foot-bottom a{color:#666}.foot-bottom a:hover{color:var(--yellow)}
+
+/* WHATSAPP */
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:120;width:54px;height:54px;border-radius:50%;background:#1a1a1a;border:1px solid var(--line-2);display:grid;place-items:center;box-shadow:0 10px 28px rgba(0,0,0,.45);transition:var(--tr);color:var(--yellow)}
+.wa-float:hover{background:var(--yellow);color:#111;border-color:var(--yellow);transform:translateY(-3px)}
+.wa-float svg{width:24px;height:24px}
+
+/* ANIMAÇÕES */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
+
+@media(max-width:960px){
+  .hero-grid,.why-grid,.form-grid{grid-template-columns:1fr}
+  .hero-visual{order:-1}.hero-logo-img{height:300px}
+  .cards,.port-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat{border-right:0;border-bottom:1px solid var(--line);padding-bottom:1.2rem}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .nav-links{position:fixed;inset:0;background:rgba(5,5,5,.98);flex-direction:column;align-items:center;justify-content:center;gap:2rem;font-size:1.1rem;transform:translateX(100%);transition:var(--tr)}
+  .nav-links.open{transform:none}
+  .menu-btn{display:block;z-index:130}
+  .nav-cta{display:none}
+  .hero-stats{position:static;transform:none;margin-top:2rem;justify-content:center}
+}
+@media(max-width:560px){
+  .cards,.port-grid,.testi-grid,.steps,.foot-grid{grid-template-columns:1fr}
+  .cta-banner{padding:2.8rem 1.5rem}
+  section{padding:80px 0}
+  .hero-stats{flex-direction:column;gap:.8rem;padding:1.2rem;width:100%}
+  .toast-wrap{bottom:16px;right:16px;left:16px}
+  .toast{min-width:0;max-width:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
 </head>
-<body>
+<body class="loading">
 
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <div class="loader-bulb">
-                <svg viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 10 C25 10, 10 30, 10 55 C10 75, 25 85, 30 95 L30 110 L70 110 L70 95 C75 85, 90 75, 90 55 C90 30, 75 10, 50 10 Z" fill="#0A0A0A"/>
-                    <path d="M35 110 L35 125 L65 125 L65 110 Z" fill="#0A0A0A"/>
-                    <line x1="35" y1="115" x2="65" y2="115" stroke="#FFE600" stroke-width="1"/>
-                    <line x1="35" y1="120" x2="65" y2="120" stroke="#FFE600" stroke-width="1"/>
-                    <circle cx="50" cy="45" r="8" fill="#FFE600"/>
-                    <path d="M42 60 Q50 55 58 60 L58 85 Q50 90 42 85 Z" fill="#FFE600"/>
-                    <path d="M42 60 L35 75 L40 77 L45 65 Z" fill="#FFE600"/>
-                    <path d="M58 60 L65 75 L60 77 L55 65 Z" fill="#FFE600"/>
-                </svg>
-            </div>
-            <div class="loader-text">LÂMPADA DIGITAL</div>
-            <div class="loader-subtext">Iluminando ideias. Desenvolvendo resultados.</div>
-        </div>
+<!--
+  MAPEAMENTO DE IMAGENS (pasta: lampada digital/)
+  - lampada digital/icone.png        → favicon, header e footer
+  - lampada digital/logo.png         → logo principal do hero
+  - lampada digital/1786021896.png   → tela de introdução + Open Graph
+  Obs.: o espaço no nome da pasta é codificado como %20 nas URLs.
+-->
+
+<!-- ========== INTRO ========== -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-content">
+    <div class="intro-glow-ring"></div>
+    <div class="intro-glow-ring r2"></div>
+    <div class="intro-glow-ring r3"></div>
+    <img class="intro-logo" src="logo.png" alt="">
+    <div class="intro-text">LÂMPADA <span>DIGITAL</span></div>
+    <div class="intro-sub">Design · Tecnologia · Resultado</div>
+    <div class="intro-loader"></div>
+  </div>
+</div>
+
+<!-- ========== HEADER ========== -->
+<header id="header">
+  <div class="container nav">
+    <a class="brand" href="#inicio" aria-label="Lâmpada Digital">
+      <img class="brand-img" src="icone.png" alt="Lâmpada Digital" width="44" height="44" fetchpriority="high">
+      <span class="brand-text"><strong>LAMPADA</strong><small>DIGITAL</small></span>
+    </a>
+    <nav class="nav-links" id="menu">
+      <a href="#servicos">Serviços</a>
+      <a href="#porque">Diferenciais</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#depoimentos">Clientes</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a href="#orcamento" class="btn btn-primary nav-cta">Solicitar proposta</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">≡</button>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="inicio">
+  <div class="container hero-grid">
+    <div>
+      <span class="kicker">Estúdio de Design e Tecnologia</span>
+      <h1>Transformamos ideias em marcas, sites e experiências digitais que <span class="hl">geram resultado</span>.</h1>
+      <p class="lead">A Lâmpada Digital une design autoral, desenvolvimento de alta performance e estratégia orientada a conversão para impulsionar o crescimento do seu negócio.</p>
+      <div class="hero-ctas">
+        <a href="#orcamento" class="btn btn-primary">Solicitar proposta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <a href="#portfolio" class="btn btn-ghost">Ver portfólio</a>
+      </div>
+      <div class="hero-note">
+        <span>Resposta em até 24h</span>
+        <span>Orçamento sem compromisso</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img class="hero-logo-img" src="logo.png" alt="Lâmpada Digital" width="880" height="880" fetchpriority="high">
+      <div class="hero-stats">
+        <div class="hero-stat"><b>13+</b><span>Projetos</span></div>
+        <div class="hero-stat"><b>7</b><span>Segmentos</span></div>
+        <div class="hero-stat"><b>5.0</b><span>Avaliação</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MARQUEE ========== -->
+<div class="marquee" aria-label="Clientes">
+  <div class="marquee-track">
+    <span>Órbita Tecnologia</span><b>/</b><span>Paróquia Santa Edwiges</span><b>/</b><span>Âmbara</span><b>/</b><span>Vórtice Ink Studio</span><b>/</b><span>Burger Lab</span><b>/</b><span>Pequenos Gênios</span><b>/</b><span>Vertex Talent Group</span><b>/</b><span>Nexus Logistics</span><b>/</b><span>Vértice Contábil</span><b>/</b><span>Maison Délice</span><b>/</b><span>Andrucci</span><b>/</b><span>Nexus//OS</span><b>/</b><span>Aurora TEA</span>
+    <span>Órbita Tecnologia</span><b>/</b><span>Paróquia Santa Edwiges</span><b>/</b><span>Âmbara</span><b>/</b><span>Vórtice Ink Studio</span><b>/</b><span>Burger Lab</span><b>/</b><span>Pequenos Gênios</span><b>/</b><span>Vertex Talent Group</span><b>/</b><span>Nexus Logistics</span><b>/</b><span>Vértice Contábil</span><b>/</b><span>Maison Délice</span><b>/</b><span>Andrucci</span><b>/</b><span>Nexus//OS</span><b>/</b><span>Aurora TEA</span>
+  </div>
+</div>
+
+<!-- ========== STATS ========== -->
+<section class="stats">
+  <div class="container stats-grid" id="stats">
+    <div class="stat"><b data-target="13" data-suffix="+">0</b><span>Projetos entregues</span></div>
+    <div class="stat"><b data-target="7" data-suffix="">0</b><span>Segmentos atendidos</span></div>
+    <div class="stat"><b data-target="100" data-suffix="%">0</b><span>Satisfação</span></div>
+    <div class="stat"><b data-target="24" data-suffix="h">0</b><span>Resposta média</span></div>
+  </div>
+</section>
+
+<!-- ========== SERVIÇOS ========== -->
+<section id="servicos">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Serviços</span>
+      <h2>Soluções completas para o seu negócio digital</h2>
+      <p>Combinamos design autoral, tecnologia de ponta e estratégia orientada a resultado para entregar projetos que realmente performam.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal"><span class="card-num">01</span>
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/></svg></div>
+        <h3>Sites institucionais</h3>
+        <p>Sites rápidos, responsivos e otimizados para posicionar sua marca e converter visitantes em clientes qualificados.</p>
+      </div>
+      <div class="card reveal d1"><span class="card-num">02</span>
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></div>
+        <h3>Landing pages</h3>
+        <p>Páginas estratégicas para campanhas, desenhadas para maximizar conversão e captar leads qualificados.</p>
+      </div>
+      <div class="card reveal d2"><span class="card-num">03</span>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg></div>
+        <h3>Identidade visual</h3>
+        <p>Marcas memoráveis e estrategicamente construídas para transmitir autoridade e diferenciar sua empresa no mercado.</p>
+      </div>
+      <div class="card reveal"><span class="card-num">04</span>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3>Social media</h3>
+        <p>Conteúdo estratégico e identidade visual consistente para redes sociais que engajam e fortalecem a marca.</p>
+      </div>
+      <div class="card reveal d1"><span class="card-num">05</span>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg></div>
+        <h3>SEO e performance</h3>
+        <p>Otimização técnica, dados estruturados e arquitetura orientada a performance para ranquear no Google.</p>
+      </div>
+      <div class="card reveal d2"><span class="card-num">06</span>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Suporte contínuo</h3>
+        <p>Acompanhamento pós-entrega com manutenção, atualizações e evolução contínua do seu projeto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== POR QUE NÓS ========== -->
+<section id="porque" style="background:var(--bg2)">
+  <div class="container why-grid">
+    <div class="reveal">
+      <span class="kicker">Diferenciais</span>
+      <h2>Uma parceria orientada a resultado</h2>
+      <p style="color:var(--muted-2);margin-bottom:2rem">Entregamos mais do que projetos. Entregamos estratégia, proximidade e acompanhamento mensurável em cada etapa.</p>
+      <ul class="check-list">
+        <li>Atendimento direto com o responsável pelo projeto</li>
+        <li>Design 100% autoral, sem templates pré-fabricados</li>
+        <li>Prazos claros e cumpridos, com transparência total</li>
+        <li>Estratégia orientada a conversão e resultado mensurável</li>
+        <li>SEO técnico e performance desde a primeira linha de código</li>
+        <li>Suporte e evolução contínua após a entrega</li>
+      </ul>
+    </div>
+    <div class="compare reveal d1">
+      <div class="compare-head"><div>Lâmpada Digital</div><div>Agências tradicionais</div></div>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#E8C547" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Atendimento ágil</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Processos lentos</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#E8C547" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Design exclusivo</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Templates genéricos</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#E8C547" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Prazos cumpridos</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Entregas atrasadas</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#E8C547" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Foco em resultado</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Foco apenas estético</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#E8C547" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Suporte incluso</li><li><svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Suporte cobrado à parte</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROCESSO ========== -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Metodologia</span>
+      <h2>Da estratégia à entrega em quatro etapas</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="num">01</span><h3>Descoberta</h3><p>Imersão no seu negócio, objetivos e público para entender o contexto real do projeto.</p></div>
+      <div class="step reveal d1"><span class="num">02</span><h3>Estratégia</h3><p>Definição do caminho ideal para gerar resultado, com escopo, cronograma e metas claras.</p></div>
+      <div class="step reveal d2"><span class="num">03</span><h3>Criação</h3><p>Design autoral e desenvolvimento técnico com atenção a cada detalhe e padrão de qualidade.</p></div>
+      <div class="step reveal d3"><span class="num">04</span><h3>Lançamento</h3><p>Publicação, testes rigorosos, monitoramento e acompanhamento contínuo do projeto.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PORTFÓLIO ========== -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center;margin-inline:auto">
+      <span class="kicker">Portfólio</span>
+      <h2>Projetos selecionados</h2>
+      <p style="margin-inline:auto">Uma amostra dos 13 projetos entregues para clientes de diferentes segmentos. Clique em cada projeto para visitar o site.</p>
     </div>
 
-    <!-- Cursor Personalizado -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="tech">Tecnologia</button>
+      <button class="filter-btn" data-filter="food">Alimentação</button>
+      <button class="filter-btn" data-filter="services">Serviços</button>
+      <button class="filter-btn" data-filter="health">Saúde</button>
+      <button class="filter-btn" data-filter="others">Outros</button>
+    </div>
 
-    <!-- Navegação -->
-    <nav class="navbar" id="navbar">
-        <a href="#" class="nav-logo">
-            <svg class="nav-logo-icon" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 10 C25 10, 10 30, 10 55 C10 75, 25 85, 30 95 L30 110 L70 110 L70 95 C75 85, 90 75, 90 55 C90 30, 75 10, 50 10 Z" fill="#FFE600"/>
-                <path d="M35 110 L35 125 L65 125 L65 110 Z" fill="#FFE600"/>
-                <line x1="35" y1="115" x2="65" y2="115" stroke="#0A0A0A" stroke-width="1"/>
-                <line x1="35" y1="120" x2="65" y2="120" stroke="#0A0A0A" stroke-width="1"/>
-                <circle cx="50" cy="45" r="8" fill="#0A0A0A"/>
-                <path d="M42 60 Q50 55 58 60 L58 85 Q50 90 42 85 Z" fill="#0A0A0A"/>
-                <path d="M42 60 L35 75 L40 77 L45 65 Z" fill="#0A0A0A"/>
-                <path d="M58 60 L65 75 L60 77 L55 65 Z" fill="#0A0A0A"/>
-            </svg>
-            <span class="nav-logo-text">LÂMPADA DIGITAL</span>
+    <div class="port-grid">
+      <a href="https://orbita-tecnologia-9pw9.vercel.app/" target="_blank" rel="noopener" class="port reveal" data-cat="tech">
+        <div class="port-visual grad-tech"><div class="port-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="9" ry="4"/><ellipse cx="12" cy="12" rx="4" ry="9"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></div></div>
+        <div class="port-title"><small>Tecnologia · Infraestrutura</small>Órbita Tecnologia</div>
+        <span class="tag">Enterprise</span>
+        <div class="port-info"><p>Plataforma de infraestrutura crítica com nuvem soberana, IA proprietária e cibersegurança de nível estatal.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="https://paroquiasantaedwiges.vercel.app/" target="_blank" rel="noopener" class="port reveal d1" data-cat="others">
+        <div class="port-visual grad-igreja"><div class="port-icon"><svg viewBox="0 0 24 24"><path d="M12 2v6M9 5h6M6 8l6-4 6 4v14H6z"/><path d="M9 22v-6h6v6"/></svg></div></div>
+        <div class="port-title"><small>Institucional · Religioso</small>Paróquia Santa Edwiges</div>
+        <span class="tag">Institucional</span>
+        <div class="port-info"><p>Plataforma institucional com horários de missas, pastorais, secretaria e agenda de eventos da comunidade.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="https://mbara.vercel.app/" target="_blank" rel="noopener" class="port reveal d2" data-cat="food">
+        <div class="port-visual grad-vinhos"><div class="port-icon"><svg viewBox="0 0 24 24"><path d="M8 2h8l-1 7a5 5 0 0 1-10 0z"/><path d="M12 15v7M8 22h8"/></svg></div></div>
+        <div class="port-title"><small>Bebidas · Curadoria</small>Âmbara</div>
+        <span class="tag">E-commerce</span>
+        <div class="port-info"><p>Boutique digital de vinhos, whiskies e destilados premium com curadoria de mais de 500 rótulos exclusivos.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="https://v-rtice-ink-studio.vercel.app/" target="_blank" rel="noopener" class="port reveal" data-cat="health">
+        <div class="port-visual grad-tattoo"><div class="port-icon"><svg viewBox="0 0 24 24"><path d="M12 2L9 7h6z"/><path d="M9 7l-4 10a4 4 0 0 0 8 0 4 4 0 0 0 8 0L15 7"/></svg></div></div>
+        <div class="port-title"><small>Beleza · Estúdio autoral</small>Vórtice Ink Studio</div>
+        <span class="tag">Autoral</span>
+        <div class="port-info"><p>Estúdio de tatuagem autoral em São Paulo. Especializado em blackwork, fine line, realismo e tradição.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="https://burger-lab-lyart.vercel.app/" target="_blank" rel="noopener" class="port reveal d1" data-cat="food">
+        <div class="port-visual grad-food"><div class="port-icon"><svg viewBox="0 0 24 24"><path d="M3 11h18a9 9 0 0 0-18 0z"/><path d="M3 15h18M4 19h16a2 2 0 0 0 2-2H2a2 2 0 0 0 2 2z"/></svg></div></div>
+        <div class="port-title"><small>Alimentação · Hamburgueria</small>Burger Lab</div>
+        <span class="tag">Artesanal</span>
+        <div class="port-info"><p>Hamburgueria artesanal com carne Angus 100%, pão brioche de padaria parceira e grelha em brasa de carvão.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="https://escola-pequenos-g-nios.vercel.app/" target="_blank" rel="noopener" class="port reveal d2" data-cat="others">
+        <div class="port-visual grad-edu"><div class="port-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5a6 6 0 0 0 12 0v-5"/></svg></div></div>
+        <div class="port-title"><small>Educação · Infantil</small>Escola Pequenos Gênios</div>
+        <span class="tag">Institucional</span>
+        <div class="port-info"><p>Escola infantil com metodologia lúdica, área verde de 2.400m² e atividades que incluem robótica e musicalização.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="https://vertex-talent-group.vercel.app/" target="_blank" rel="noopener" class="port reveal" data-cat="services">
+        <div class="port-visual grad-rh"><div class="port-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M16 3a4 4 0 0 1 0 8M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div></div>
+        <div class="port-title"><small>RH · Executive Search</small>Vertex Talent Group</div>
+        <span class="tag">B2B</span>
+        <div class="port-info"><p>Consultoria de RH especializada em executive search e soluções estratégicas para empresas de alto desempenho.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="https://nexus-logistics-six.vercel.app/" target="_blank" rel="noopener" class="port reveal d1" data-cat="services">
+        <div class="port-visual grad-log"><div class="port-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div></div>
+        <div class="port-title"><small>Logística · Global</small>Nexus Logistics</div>
+        <span class="tag">Freight</span>
+        <div class="port-info"><p>Plataforma global de logística com rastreamento em tempo real em 196 países e frota de 8.450 veículos.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="https://verticecontabil.vercel.app/" target="_blank" rel="noopener" class="port reveal d2" data-cat="services">
+        <div class="port-visual grad-contabil"><div class="port-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5M17 10h4v4"/></svg></div></div>
+        <div class="port-title"><small>Contabilidade · Estratégia</small>Vértice Contábil</div>
+        <span class="tag">B2B</span>
+        <div class="port-info"><p>Escritório contábil com 18 anos de mercado, mais de 500 clientes ativos e planejamento tributário estratégico.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="https://maison-d-lice.vercel.app/" target="_blank" rel="noopener" class="port reveal" data-cat="food">
+        <div class="port-visual grad-confeitaria"><div class="port-icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v2h14V9a7 7 0 0 0-7-7z"/><path d="M5 11h14v2a7 7 0 0 1-14 0z"/><path d="M12 13v4"/></svg></div></div>
+        <div class="port-title"><small>Confeitaria · Francesa</small>Maison Délice</div>
+        <span class="tag">Premium</span>
+        <div class="port-info"><p>Confeitaria artesanal francesa com macarons, chocolates belgas e bolos artísticos preparados à mão.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="https://andreandrucci.vercel.app/" target="_blank" rel="noopener" class="port reveal d1" data-cat="health">
+        <div class="port-visual grad-beauty"><div class="port-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><path d="M8 21l2-8-3-3 4-2 4 2-3 3 2 8"/></svg></div></div>
+        <div class="port-title"><small>Fitness · Estética</small>Andrucci</div>
+        <span class="tag">Personal</span>
+        <div class="port-info"><p>Especialista em massagem estética e fitness. Definição muscular, contorno corporal e recuperação pós-treino.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="https://system-status-beige.vercel.app/" target="_blank" rel="noopener" class="port reveal d2" data-cat="tech">
+        <div class="port-visual grad-software"><div class="port-icon"><svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/><rect x="7" y="8" width="10" height="8"/></svg></div></div>
+        <div class="port-title"><small>Software · Enterprise</small>Nexus//OS</div>
+        <span class="tag">SaaS</span>
+        <div class="port-info"><p>Sistema operacional enterprise com IA, cloud, blockchain e arquiteturas quânticas para corporações.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="https://aurora-tea.vercel.app/" target="_blank" rel="noopener" class="port reveal" data-cat="health">
+        <div class="port-visual grad-saude"><div class="port-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg></div></div>
+        <div class="port-title"><small>Saúde · Neurodiversidade</small>Aurora TEA</div>
+        <span class="tag">Clínica</span>
+        <div class="port-info"><p>Centro multidisciplinar especializado em atendimento para pessoas no espectro autista, com base em evidências.</p><span class="view">Visitar projeto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== DEPOIMENTOS ========== -->
+<section id="depoimentos">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Clientes</span>
+      <h2>Relatos de quem confia no nosso trabalho</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p>A Lâmpada Digital transformou nossa presença digital. O site ficou impecável e os resultados começaram a aparecer já na primeira semana após o lançamento.</p>
+        <footer><div class="avatar">R</div><div><b>Rafael Lima</b><span>Diretor Executivo</span></div></footer>
+      </div>
+      <div class="testi reveal d1">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p>Profissionalismo, atenção aos detalhes e entrega antes do prazo. O projeto superou nossas expectativas em todos os aspectos técnicos e visuais.</p>
+        <footer><div class="avatar">C</div><div><b>Carlos Mendes</b><span>CEO, Vértice Contábil</span></div></footer>
+      </div>
+      <div class="testi reveal d2">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p>Atendimento humanizado e resultado de altíssima qualidade. A Lâmpada entendeu exatamente o que precisávamos e entregou além do esperado.</p>
+        <footer><div class="avatar">M</div><div><b>Mariana Costa</b><span>Diretora, Maison Délice</span></div></footer>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section id="faq" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center;margin-inline:auto">
+      <span class="kicker">Perguntas frequentes</span>
+      <h2>Respostas objetivas para suas dúvidas</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>Quanto custa um site ou uma identidade visual?</summary><p>O valor varia conforme o escopo de cada projeto. Oferecemos orçamento personalizado e gratuito, entregue em até 24 horas úteis. Basta nos contar seu objetivo e devolvemos uma proposta clara e detalhada.</p></details>
+      <details class="reveal"><summary>Qual o prazo médio de entrega?</summary><p>Identidades visuais são entregues entre 5 e 10 dias úteis. Sites institucionais entre 7 e 15 dias úteis, conforme a complexidade. Todos os prazos são combinados com transparência antes do início do projeto.</p></details>
+      <details class="reveal"><summary>Os sites são otimizados para mecanismos de busca?</summary><p>Sim. Todos os projetos incluem SEO técnico (tags semânticas, meta dados, sitemap.xml, robots.txt), dados estruturados em Schema.org, performance otimizada e arquitetura preparada para ranqueamento no Google.</p></details>
+      <details class="reveal"><summary>Existe suporte após a entrega do projeto?</summary><p>Sim. Oferecemos acompanhamento pós-entrega com suporte técnico, atualizações, ajustes e evolução contínua conforme as necessidades do cliente. Nenhum cliente fica sem assistência.</p></details>
+      <details class="reveal"><summary>Como funciona o pagamento?</summary><p>Trabalhamos com condições flexíveis: entrada combinada mais parcelamento conforme o escopo, sempre com transparência total, sem custos ocultos e com contrato formalizado.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section>
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2>Pronto para iniciar seu próximo projeto?</h2>
+      <p>Solicite uma proposta personalizada e gratuita. Respondemos em até 24 horas úteis.</p>
+      <a href="#orcamento" class="btn btn-dark">Solicitar proposta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FORMULÁRIO (Web3Forms) ========== -->
+<section id="orcamento" style="padding-top:20px">
+  <div class="container form-grid">
+    <div class="reveal">
+      <span class="kicker">Solicitação de proposta</span>
+      <h2>Conte-nos sobre o seu projeto</h2>
+      <p style="color:var(--muted-2)">Preencha o formulário e receba uma proposta personalizada em até 24 horas úteis. Sem compromisso e sem custos iniciais.</p>
+      <p style="margin-top:2rem;color:var(--muted-2);font-size:.9rem;line-height:1.8">
+        contato@lampadadigital.com.br<br>
+        +55 (11) 99999-9999
+      </p>
+    </div>
+    <form class="form-box reveal d1" id="contactForm" novalidate>
+      <input type="hidden" name="access_key" value="2ee71545-e598-4f91-9e18-0b1c75432dcf">
+      <input type="hidden" name="subject" value="Nova solicitação de proposta — Lâmpada Digital">
+      <input type="hidden" name="from_name" value="Site Lâmpada Digital">
+      <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
+
+      <label for="name">Nome completo</label>
+      <input id="name" name="name" type="text" required placeholder="Como devemos nos dirigir a você">
+
+      <label for="email">E-mail corporativo</label>
+      <input id="email" name="email" type="email" required placeholder="voce@empresa.com.br">
+
+      <label for="company">Empresa</label>
+      <input id="company" name="company" type="text" placeholder="Nome da empresa (opcional)">
+
+      <label for="service">Tipo de projeto</label>
+      <select id="service" name="service" required>
+        <option value="">Selecione uma opção</option>
+        <option>Site institucional</option>
+        <option>Landing page</option>
+        <option>Identidade visual</option>
+        <option>Social media</option>
+        <option>Projeto completo</option>
+        <option>Outro</option>
+      </select>
+
+      <label for="message">Breve descrição</label>
+      <textarea id="message" name="message" required placeholder="Compartilhe os principais objetivos do seu projeto"></textarea>
+
+      <button type="submit" class="btn btn-primary" id="submitBtn">
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="btn-label">Enviar solicitação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site" id="contato">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#inicio">
+          <img class="foot-brand-img" src="lampada%20digital/icone.png" alt="Lâmpada Digital" loading="lazy" width="56" height="56">
+          <span class="brand-text"><strong>LAMPADA</strong><small>DIGITAL</small></span>
         </a>
-        <ul class="nav-menu" id="nav-menu">
-            <li><a href="#about">Sobre</a></li>
-            <li><a href="#services">Serviços</a></li>
-            <li><a href="#projects">Projetos</a></li>
-            <li><a href="#process">Processo</a></li>
-            <li><a href="#team">Equipe</a></li>
-            <li><a href="#contact">Contato</a></li>
-        </ul>
-        <a href="#contact" class="nav-cta">Iniciar Projeto</a>
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+        <p style="margin-top:1.2rem">Estúdio de design e desenvolvimento digital. Criamos marcas, sites e experiências digitais orientadas a resultado.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3Zm6.5 0h3.8v1.6h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4Z"/></svg></a>
+          <a href="https://wa.me/5511999999999" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.2-3.6-.8-3-1.2-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5-.3.6-.7.9-.5 1.2.7 1.2 1.6 2 2.8 2.6.3.2.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.2.5.3.6.4.1.2.1.8-.1 1.5Z"/></svg></a>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg-glow"></div>
-        <div class="hero-grid"></div>
-        <div class="hero-bulb-decoration">
-            <svg viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 10 C25 10, 10 30, 10 55 C10 75, 25 85, 30 95 L30 110 L70 110 L70 95 C75 85, 90 75, 90 55 C90 30, 75 10, 50 10 Z" fill="#FFE600"/>
-                <path d="M35 110 L35 125 L65 125 L65 110 Z" fill="#FFE600"/>
-                <circle cx="50" cy="45" r="8" fill="#0A0A0A"/>
-                <path d="M42 60 Q50 55 58 60 L58 85 Q50 90 42 85 Z" fill="#0A0A0A"/>
-            </svg>
-        </div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-bolt"></i>
-                Iluminando ideias. Desenvolvendo resultados.
-            </div>
-            <h1 class="hero-title">
-                Transformamos <span class="highlight">ideias</span><br>
-                em sites que <span class="highlight">brilham</span>
-            </h1>
-            <p class="hero-subtitle">
-                Somos a Lâmpada Digital. Acendemos a chama dos seus projetos digitais com código limpo, design estratégico e tecnologia de ponta. Sites, sistemas e aplicações que fazem seu negócio brilhar no mundo digital.
-            </p>
-            <div class="hero-ctas">
-                <a href="#contact" class="btn-primary">
-                    Solicitar Orçamento <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="#projects" class="btn-secondary">
-                    Ver Projetos <i class="fas fa-play"></i>
-                </a>
-            </div>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="hero-stat-number" data-target="120">0</div>
-                    <div class="hero-stat-label">Projetos Entregues</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-number" data-target="98">0</div>
-                    <div class="hero-stat-label">Clientes Satisfeitos</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-number" data-target="6">0</div>
-                    <div class="hero-stat-label">Anos de Mercado</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-number" data-target="24">0</div>
-                    <div class="hero-stat-label">Suporte em Horas</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Sobre -->
-    <section class="about" id="about">
-        <div class="about-grid">
-            <div class="about-visual fade-in">
-                <div class="about-bulb">
-                    <div class="about-bulb-rays"></div>
-                    <svg viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C25 10, 10 30, 10 55 C10 75, 25 85, 30 95 L30 110 L70 110 L70 95 C75 85, 90 75, 90 55 C90 30, 75 10, 50 10 Z" fill="#FFE600"/>
-                        <path d="M35 110 L35 125 L65 125 L65 110 Z" fill="#FFE600"/>
-                        <line x1="35" y1="115" x2="65" y2="115" stroke="#0A0A0A" stroke-width="1"/>
-                        <line x1="35" y1="120" x2="65" y2="120" stroke="#0A0A0A" stroke-width="1"/>
-                        <circle cx="50" cy="45" r="8" fill="#0A0A0A"/>
-                        <path d="M42 60 Q50 55 58 60 L58 85 Q50 90 42 85 Z" fill="#0A0A0A"/>
-                        <path d="M42 60 L35 75 L40 77 L45 65 Z" fill="#0A0A0A"/>
-                        <path d="M58 60 L65 75 L60 77 L55 65 Z" fill="#0A0A0A"/>
-                    </svg>
-                </div>
-            </div>
-            <div class="about-text fade-in">
-                <p class="section-label">Sobre a Lâmpada Digital</p>
-                <h2 class="section-title">
-                    Acendemos a <span class="highlight">Lâmpada Digital</span> das suas ideias digitais
-                </h2>
-                <p>
-                    Somos uma agência especializada em desenvolvimento web e sistemas sob medida. Nascemos da crença de que toda grande ideia merece um espaço digital à altura — rápido, bonito e funcional.
-                </p>
-                <p>
-                    Combinamos design estratégico, tecnologia de ponta e processos ágeis para entregar projetos que não apenas funcionam, mas geram resultados reais para o seu negócio. Como uma lâmpada Digital, iluminamos o caminho do sucesso digital.
-                </p>
-
-                <div class="about-features">
-                    <div class="about-feature">
-                        <div class="about-feature-icon"><i class="fas fa-rocket"></i></div>
-                        <div class="about-feature-text">
-                            <h4>Performance</h4>
-                            <p>Sites rápidos e otimizados</p>
-                        </div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon"><i class="fas fa-mobile-alt"></i></div>
-                        <div class="about-feature-text">
-                            <h4>Responsivo</h4>
-                            <p>Perfeito em qualquer tela</p>
-                        </div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon"><i class="fas fa-search"></i></div>
-                        <div class="about-feature-text">
-                            <h4>SEO</h4>
-                            <p>Otimizado para o Google</p>
-                        </div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon"><i class="fas fa-headset"></i></div>
-                        <div class="about-feature-text">
-                            <h4>Suporte</h4>
-                            <p>Acompanhamento contínuo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Serviços -->
-    <section class="services" id="services">
-        <div class="services-header">
-            <p class="section-label fade-in">Nossos Serviços</p>
-            <h2 class="section-title fade-in">
-                Soluções que <span class="highlight">iluminam</span><br>seu negócio
-            </h2>
-            <p class="section-subtitle fade-in">
-                Do site institucional ao sistema complexo, temos a expertise para transformar sua visão em realidade digital.
-            </p>
-        </div>
-
-        <div class="services-grid">
-            <div class="service-card fade-in">
-                <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
-                <div class="service-number">01</div>
-                <h3 class="service-title">Sites Institucionais</h3>
-                <p class="service-description">
-                    Sites profissionais que transmitem credibilidade e convertem visitantes em clientes. Design moderno, rápido e otimizado para SEO.
-                </p>
-                <a href="#contact" class="service-link">
-                    Saiba mais <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="service-card fade-in">
-                <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
-                <div class="service-number">02</div>
-                <h3 class="service-title">E-commerce</h3>
-                <p class="service-description">
-                    Lojas virtuais completas com checkout otimizado, integração com meios de pagamento e gestão de produtos simplificada.
-                </p>
-                <a href="#contact" class="service-link">
-                    Saiba mais <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="service-card fade-in">
-                <div class="service-icon"><i class="fas fa-cogs"></i></div>
-                <div class="service-number">03</div>
-                <h3 class="service-title">Sistemas Web</h3>
-                <p class="service-description">
-                    Sistemas sob medida para automatizar processos, gerenciar dados e escalar seu negócio. Dashboards, CRMs, ERPs e muito mais.
-                </p>
-                <a href="#contact" class="service-link">
-                    Saiba mais <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="service-card fade-in">
-                <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
-                <div class="service-number">04</div>
-                <h3 class="service-title">Aplicativos Web</h3>
-                <p class="service-description">
-                    PWAs e aplicações web progressivas que funcionam como apps nativos, sem precisar de lojas de aplicativo.
-                </p>
-                <a href="#contact" class="service-link">
-                    Saiba mais <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="service-card fade-in">
-                <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
-                <div class="service-number">05</div>
-                <h3 class="service-title">Landing Pages</h3>
-                <p class="service-description">
-                    Páginas de alta conversão para campanhas de marketing, lançamentos e captação de leads. Foco total em resultado.
-                </p>
-                <a href="#contact" class="service-link">
-                    Saiba mais <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="service-card fade-in">
-                <div class="service-icon"><i class="fas fa-tools"></i></div>
-                <div class="service-number">06</div>
-                <h3 class="service-title">Manutenção & Suporte</h3>
-                <p class="service-description">
-                    Cuidamos do seu site ou sistema com atualizações, backups, monitoramento e suporte técnico contínuo.
-                </p>
-                <a href="#contact" class="service-link">
-                    Saiba mais <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Projetos -->
-    <section class="projects" id="projects">
-        <div class="projects-header">
-            <div class="fade-in">
-                <p class="section-label">Portfólio</p>
-                <h2 class="section-title">
-                    Projetos que <span class="highlight">acendemos</span>
-                </h2>
-                <p class="section-subtitle">
-                    Uma seleção dos nossos trabalhos mais recentes e impactantes.
-                </p>
-            </div>
-            <div class="projects-filters fade-in">
-                <button class="project-filter active" data-filter="all">Todos</button>
-                <button class="project-filter" data-filter="site">Sites</button>
-                <button class="project-filter" data-filter="ecommerce">E-commerce</button>
-                <button class="project-filter" data-filter="sistema">Sistemas</button>
-                <button class="project-filter" data-filter="app">Apps</button>
-            </div>
-        </div>
-
-        <div class="projects-grid">
-            <div class="project-card fade-in" data-category="ecommerce">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800" alt="Loja Urban Style">
-                    <div class="project-overlay">
-                        <span class="project-category">E-commerce</span>
-                        <h3 class="project-title">Urban Style Store</h3>
-                        <p class="project-description">Loja virtual de moda streetwear com +500 produtos e checkout otimizado.</p>
-                        <div class="project-tech">
-                            <span class="project-tech-tag">Shopify</span>
-                            <span class="project-tech-tag">React</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
-            </div>
-
-            <div class="project-card fade-in" data-category="sistema">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="Sistema Financeiro">
-                    <div class="project-overlay">
-                        <span class="project-category">Sistema Web</span>
-                        <h3 class="project-title">FinControl Pro</h3>
-                        <p class="project-description">Sistema de gestão financeira para pequenas empresas com dashboard em tempo real.</p>
-                        <div class="project-tech">
-                            <span class="project-tech-tag">Node.js</span>
-                            <span class="project-tech-tag">Vue.js</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
-            </div>
-
-            <div class="project-card fade-in" data-category="site">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800" alt="Site Arquitetura">
-                    <div class="project-overlay">
-                        <span class="project-category">Site Institucional</span>
-                        <h3 class="project-title">Studio Arq+Modern</h3>
-                        <p class="project-description">Site premium para escritório de arquitetura com galeria interativa de projetos.</p>
-                        <div class="project-tech">
-                            <span class="project-tech-tag">WordPress</span>
-                            <span class="project-tech-tag">GSAP</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
-            </div>
-
-            <div class="project-card fade-in" data-category="app">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800" alt="App Delivery">
-                    <div class="project-overlay">
-                        <span class="project-category">Aplicativo Web</span>
-                        <h3 class="project-title">FoodExpress App</h3>
-                        <p class="project-description">PWA de delivery de comida com rastreamento em tempo real e sistema de pedidos.</p>
-                        <div class="project-tech">
-                            <span class="project-tech-tag">React</span>
-                            <span class="project-tech-tag">Firebase</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
-            </div>
-
-            <div class="project-card fade-in" data-category="site">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800" alt="Site Clínica">
-                    <div class="project-overlay">
-                        <span class="project-category">Site Institucional</span>
-                        <h3 class="project-title">Clínica Vida Plena</h3>
-                        <p class="project-description">Site para clínica médica com sistema de agendamento online integrado.</p>
-                        <div class="project-tech">
-                            <span class="project-tech-tag">Next.js</span>
-                            <span class="project-tech-tag">Tailwind</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
-            </div>
-
-            <div class="project-card fade-in" data-category="sistema">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Sistema CRM">
-                    <div class="project-overlay">
-                        <span class="project-category">Sistema Web</span>
-                        <h3 class="project-title">SalesHub CRM</h3>
-                        <p class="project-description">CRM personalizado para equipe comercial com automação de funil de vendas.</p>
-                        <div class="project-tech">
-                            <span class="project-tech-tag">Laravel</span>
-                            <span class="project-tech-tag">MySQL</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Processo -->
-    <section class="process" id="process">
-        <div class="process-header">
-            <p class="section-label fade-in">Como Trabalhamos</p>
-            <h2 class="section-title fade-in">
-                Nosso <span class="highlight">processo</span> de trabalho
-            </h2>
-            <p class="section-subtitle fade-in">
-                Um método claro e eficiente para transformar sua ideia em um produto digital de sucesso.
-            </p>
-        </div>
-
-        <div class="process-grid">
-            <div class="process-step fade-in">
-                <div class="process-step-number">01</div>
-                <h3 class="process-step-title">Briefing</h3>
-                <p class="process-step-description">
-                    Entendemos seu negócio, objetivos e necessidades. Definimos escopo, prazos e expectativas do projeto.
-                </p>
-            </div>
-
-            <div class="process-step fade-in">
-                <div class="process-step-number">02</div>
-                <h3 class="process-step-title">Design</h3>
-                <p class="process-step-description">
-                    Criamos wireframes e protótipos visuais. Você aprova o layout antes de qualquer linha de código.
-                </p>
-            </div>
-
-            <div class="process-step fade-in">
-                <div class="process-step-number">03</div>
-                <h3 class="process-step-title">Desenvolvimento</h3>
-                <p class="process-step-description">
-                    Codificamos com as melhores tecnologias, seguindo padrões de performance, segurança e SEO.
-                </p>
-            </div>
-
-            <div class="process-step fade-in">
-                <div class="process-step-number">04</div>
-                <h3 class="process-step-title">Lançamento</h3>
-                <p class="process-step-description">
-                    Testes finais, deploy e treinamento. Entregamos o projeto pronto para brilhar no mundo digital.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Tecnologias -->
-    <section class="tech">
-        <div class="tech-header">
-            <p class="section-label fade-in">Stack Tecnológico</p>
-            <h2 class="section-title fade-in">
-                Tecnologias que <span class="highlight">dominamos</span>
-            </h2>
-            <p class="section-subtitle fade-in">
-                Trabalhamos com as ferramentas mais modernas e robustas do mercado.
-            </p>
-        </div>
-
-        <div class="tech-grid">
-            <div class="tech-item fade-in">
-                <i class="fab fa-react"></i>
-                <div class="tech-name">React</div>
-            </div>
-            <div class="tech-item fade-in">
-                <i class="fab fa-vuejs"></i>
-                <div class="tech-name">Vue.js</div>
-            </div>
-            <div class="tech-item fade-in">
-                <i class="fab fa-node-js"></i>
-                <div class="tech-name">Node.js</div>
-            </div>
-            <div class="tech-item fade-in">
-                <i class="fab fa-php"></i>
-                <div class="tech-name">PHP</div>
-            </div>
-            <div class="tech-item fade-in">
-                <i class="fab fa-wordpress"></i>
-                <div class="tech-name">WordPress</div>
-            </div>
-            <div class="tech-item fade-in">
-                <i class="fab fa-shopify"></i>
-                <div class="tech-name">Shopify</div>
-            </div>
-            <div class="tech-item fade-in">
-                <i class="fab fa-js-square"></i>
-                <div class="tech-name">JavaScript</div>
-            </div>
-            <div class="tech-item fade-in">
-                <i class="fab fa-python"></i>
-                <div class="tech-name">Python</div>
-            </div>
-            <div class="tech-item fade-in">
-                <i class="fas fa-database"></i>
-                <div class="tech-name">MySQL</div>
-            </div>
-            <div class="tech-item fade-in">
-                <i class="fab fa-aws"></i>
-                <div class="tech-name">AWS</div>
-            </div>
-            <div class="tech-item fade-in">
-                <i class="fab fa-figma"></i>
-                <div class="tech-name">Figma</div>
-            </div>
-            <div class="tech-item fade-in">
-                <i class="fab fa-git-alt"></i>
-                <div class="tech-name">Git</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Equipe -->
-    <section class="team" id="team">
-        <div class="team-header">
-            <p class="section-label fade-in">Nossa Equipe</p>
-            <h2 class="section-title fade-in">
-                Mentes que <span class="highlight">iluminam</span> projetos
-            </h2>
-            <p class="section-subtitle fade-in">
-                Profissionais apaixonados por tecnologia e design, prontos para transformar sua visão em realidade.
-            </p>
-        </div>
-
-        <div class="team-grid">
-            <div class="team-member fade-in">
-                <div class="team-image">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400" alt="Ricardo Monteiro">
-                </div>
-                <h3 class="team-name">Ricardo Monteiro</h3>
-                <p class="team-role">CEO & Fundador</p>
-                <p class="team-bio">10 anos de experiência em desenvolvimento web e gestão de projetos digitais.</p>
-            </div>
-
-            <div class="team-member fade-in">
-                <div class="team-image">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400" alt="Ana Silva">
-                </div>
-                <h3 class="team-name">Ana Silva</h3>
-                <p class="team-role">Lead Designer</p>
-                <p class="team-bio">Especialista em UI/UX com foco em experiências digitais memoráveis.</p>
-            </div>
-
-            <div class="team-member fade-in">
-                <div class="team-image">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400" alt="Carlos Santos">
-                </div>
-                <h3 class="team-name">Carlos Santos</h3>
-                <p class="team-role">Full Stack Developer</p>
-                <p class="team-bio">Expert em React, Node.js e arquiteturas escaláveis.</p>
-            </div>
-
-            <div class="team-member fade-in">
-                <div class="team-image">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400" alt="Julia Costa">
-                </div>
-                <h3 class="team-name">Julia Costa</h3>
-                <p class="team-role">Project Manager</p>
-                <p class="team-bio">Garante que cada projeto seja entregue com excelência e no prazo.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Depoimentos -->
-    <section class="testimonials" id="testimonials">
-        <div class="testimonials-header">
-            <p class="section-label fade-in">Depoimentos</p>
-            <h2 class="section-title fade-in">
-                O que nossos <span class="highlight">clientes</span> dizem
-            </h2>
-        </div>
-
-        <div class="testimonials-grid">
-            <div class="testimonial-card fade-in">
-                <div class="testimonial-quote-icon">"</div>
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">
-                    A Lâmpada Digital transformou completamente nossa presença digital. O site ficou incrível e as vendas aumentaram 40% no primeiro mês. Equipe super profissional!
-                </p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="Cliente">
-                    <div class="testimonial-author-info">
-                        <h4>Ana Carolina Silva</h4>
-                        <p>CEO - Urban Style</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card fade-in">
-                <div class="testimonial-quote-icon">"</div>
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">
-                    O sistema que desenvolveram automatizou 80% dos nossos processos manuais. Economia de tempo e dinheiro impressionante. Recomendo de olhos fechados!
-                </p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="Cliente">
-                    <div class="testimonial-author-info">
-                        <h4>Ricardo Mendes</h4>
-                        <p>Diretor - FinControl</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card fade-in">
-                <div class="testimonial-quote-icon">"</div>
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">
-                    Atendimento excepcional do início ao fim. Entenderam exatamente o que precisávamos e entregaram além das expectativas. Parceria de longo prazo!
-                </p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200" alt="Cliente">
-                    <div class="testimonial-author-info">
-                        <h4>Marina Costa</h4>
-                        <p>Fundadora - Studio Arq</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção CTA -->
-    <section class="cta">
-        <div class="cta-bg"></div>
-        <div class="cta-content fade-in">
-            <h2 class="cta-title">
-                Pronto para <span class="highlight">acender</span> seu projeto?
-            </h2>
-            <p class="cta-subtitle">
-                Vamos conversar sobre sua ideia. Solicite um orçamento sem compromisso e descubra como podemos transformar sua visão em realidade digital.
-            </p>
-            <a href="#contact" class="btn-primary">
-                Solicitar Orçamento <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- Seção Contato -->
-    <section class="contact" id="contact">
-        <div class="contact-grid">
-            <div class="contact-info fade-in">
-                <p class="section-label">Contato</p>
-                <h3>
-                    Vamos <span class="highlight">conversar</span> sobre seu projeto?
-                </h3>
-                <p>
-                    Preencha o formulário ou entre em contato diretamente pelos nossos canais. Respondemos em até 2 horas em horário comercial.
-                </p>
-
-                <div class="contact-details">
-                    <div class="contact-detail">
-                        <div class="contact-detail-icon"><i class="fas fa-envelope"></i></div>
-                        <div class="contact-detail-content">
-                            <h4>E-mail</h4>
-                            <a href="mailto:contato@lampada.com">contato@lampada.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-detail-icon"><i class="fab fa-whatsapp"></i></div>
-                        <div class="contact-detail-content">
-                            <h4>WhatsApp</h4>
-                            <a href="https://wa.me/+551199479-0513">+55 (11) 99479-0513</a>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-detail-icon"><i class="fas fa-clock"></i></div>
-                        <div class="contact-detail-content">
-                            <h4>Horário</h4>
-                            <p>Seg a Sex: 9h às 18h</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-detail-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="contact-detail-content">
-                            <h4>Localização</h4>
-                            <p>100% Digital — Atendemos todo o Brasil</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-social">
-                    <a href="https://www.instagram.com/digitallampada/"><i class="fab fa-instagram"></i></a>
-                    <a href="https://github.com/Lampada-digital"><i class="fab fa-github"></i></a>
-                    <a href="https://www.behance.net/lampadadigital"><i class="fab fa-behance"></i></a>
-                </div>
-            </div>
-
-            <div class="contact-form fade-in">
-                <form id="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Nome *</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail *</label>
-                            <input type="email" id="email" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone">WhatsApp *</label>
-                            <input type="tel" id="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="service">Tipo de Projeto *</label>
-                            <select id="service" required>
-                                <option value="">Selecione</option>
-                                <option value="site">Site Institucional</option>
-                                <option value="ecommerce">E-commerce</option>
-                                <option value="sistema">Sistema Web</option>
-                                <option value="app">Aplicativo</option>
-                                <option value="landing">Landing Page</option>
-                                <option value="outro">Outro</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="budget">Investimento Estimado</label>
-                        <select id="budget">
-                            <option value="">Selecione (opcional)</option>
-                            <option value="ate2k">Até R$ 2.000</option>
-                            <option value="2k-5k">R$ 2.000 — R$ 5.000</option>
-                            <option value="5k-10k">R$ 5.000 — R$ 10.000</option>
-                            <option value="10k-20k">R$ 10.000 — R$ 20.000</option>
-                            <option value="acima20k">Acima de R$ 20.000</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Conte sobre seu projeto *</label>
-                        <textarea id="message" rows="4" placeholder="Descreva sua ideia, objetivos, prazo..." required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">
-                        Enviar Mensagem <i class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <svg class="nav-logo-icon" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C25 10, 10 30, 10 55 C10 75, 25 85, 30 95 L30 110 L70 110 L70 95 C75 85, 90 75, 90 55 C90 30, 75 10, 50 10 Z" fill="#FFE600"/>
-                        <path d="M35 110 L35 125 L65 125 L65 110 Z" fill="#FFE600"/>
-                        <circle cx="50" cy="45" r="8" fill="#0A0A0A"/>
-                        <path d="M42 60 Q50 55 58 60 L58 85 Q50 90 42 85 Z" fill="#0A0A0A"/>
-                    </svg>
-                    <span class="footer-logo-text">LÂMPADA DIGITAL</span>
-                </div>
-                <p>
-                    Agência de desenvolvimento web e sistemas. Transformamos ideias em produtos digitais que brilham.
-                </p>
-            </div>
-            <div class="footer-col">
-                <h4>Navegação</h4>
-                <a href="#about">Sobre</a>
-                <a href="#services">Serviços</a>
-                <a href="#projects">Projetos</a>
-                <a href="#process">Processo</a>
-                <a href="#contact">Contato</a>
-            </div>
-            <div class="footer-col">
-                <h4>Serviços</h4>
-                <a href="#">Sites Institucionais</a>
-                <a href="#">E-commerce</a>
-                <a href="#">Sistemas Web</a>
-                <a href="#">Landing Pages</a>
-                <a href="#">Manutenção</a>
-            </div>
-            <div class="footer-col">
-                <h4>Contato</h4>
-                <p>contato@lampada.dev</p>
-                <p>+55 (11) 99479-0513</p>
-                <p>Seg a Sex: 9h às 18h</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 LÂMPADA DIGITAL. Todos os direitos reservados.</p>
-            <div class="footer-bottom-links">
-                <a href="#">Política de Privacidade</a>
-                <a href="#">Termos de Uso</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- WhatsApp Floating -->
-    <a href="https://wa.me/+551199479-0513" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <script>
-        // ============================================
-        // LOADING SCREEN
-        // ============================================
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 2000);
-        });
-
-        // ============================================
-        // CURSOR PERSONALIZADO
-        // ============================================
-        const cursor = document.getElementById('cursor');
-        const cursorDot = document.getElementById('cursor-dot');
-
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-        });
-
-        const hoverElements = document.querySelectorAll('a, button, .project-card, .service-card, .tech-item, .team-member');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-        });
-
-        // ============================================
-        // NAVEGAÇÃO
-        // ============================================
-        const navbar = document.getElementById('navbar');
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // ============================================
-        // ANIMAÇÕES DE SCROLL
-        // ============================================
-        const fadeElements = document.querySelectorAll('.fade-in');
-
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        fadeElements.forEach(el => observer.observe(el));
-
-        // ============================================
-        // ANIMAÇÃO DOS NÚMEROS (STATS)
-        // ============================================
-        const stats = document.querySelectorAll('.hero-stat-number');
-        let statsAnimated = false;
-
-        const animateStats = () => {
-            if (statsAnimated) return;
-            
-            stats.forEach(stat => {
-                const target = parseInt(stat.dataset.target);
-                let current = 0;
-                const increment = target / 60;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        stat.textContent = target + (target === 98 ? '%' : target === 24 ? '/7' : '+');
-                        clearInterval(timer);
-                    } else {
-                        stat.textContent = Math.floor(current);
-                    }
-                }, 30);
-            });
-            
-            statsAnimated = true;
-        };
-
-        const statsSection = document.querySelector('.hero-stats');
-        if (statsSection) {
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateStats();
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            statsObserver.observe(statsSection);
-        }
-
-        // ============================================
-        // FILTRO DE PROJETOS
-        // ============================================
-        const projectFilters = document.querySelectorAll('.project-filter');
-        const projectItems = document.querySelectorAll('.project-card');
-
-        projectFilters.forEach(filter => {
-            filter.addEventListener('click', () => {
-                projectFilters.forEach(f => f.classList.remove('active'));
-                filter.classList.add('active');
-
-                const filterValue = filter.dataset.filter;
-
-                projectItems.forEach(item => {
-                    if (filterValue === 'all' || item.dataset.category === filterValue) {
-                        item.style.display = 'block';
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, 10);
-                    } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 400);
-                    }
-                });
-            });
-        });
-
-        // ============================================
-        // FORMULÁRIO DE CONTATO
-        // ============================================
-        const contactForm = document.getElementById('contact-form');
-
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
-                budget: document.getElementById('budget').value,
-                message: document.getElementById('message').value
-            };
-
-            console.log('Mensagem enviada:', formData);
-            
-            alert('Mensagem enviada com sucesso! Entraremos em contato em até 2 horas.');
-            contactForm.reset();
-        });
-
-        // ============================================
-        // SMOOTH SCROLL
-        // ============================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // ============================================
-        // PARALLAX NO HERO
-        // ============================================
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroGlow = document.querySelector('.hero-bg-glow');
-            if (heroGlow && scrolled < window.innerHeight) {
-                heroGlow.style.transform = `translate(-50%, calc(-50% + ${scrolled * 0.3}px))`;
-            }
-        });
-
-        console.log('💡 LÂMPADA DIGITAL - Iluminando ideias. Desenvolvendo resultados.');
-    </script>
-
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <a href="#servicos">Serviços</a><a href="#porque">Diferenciais</a><a href="#portfolio">Portfólio</a><a href="#depoimentos">Clientes</a><a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Serviços</h4>
+        <a href="#servicos">Sites institucionais</a><a href="#servicos">Landing pages</a><a href="#servicos">Identidade visual</a><a href="#servicos">SEO e performance</a>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <a href="https://wa.me/5511999999999">+55 (11) 99999-9999</a>
+        <a href="mailto:contato@lampadadigital.com.br">contato@lampadadigital.com.br</a>
+        <p>Atendimento em todo o Brasil</p>
+        <p>Segunda a sexta, das 9h às 18h</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Lâmpada Digital — CNPJ 00.000.000/0001-00. Todos os direitos reservados.</span>
+      <span><a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== TOAST ========== -->
+<div class="toast-wrap" id="toastWrap" aria-live="polite" aria-atomic="true"></div>
+
+<!-- ========== WHATSAPP ========== -->
+<a class="wa-float" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Gostaria%20de%20solicitar%20uma%20proposta." target="_blank" rel="noopener" aria-label="Contato via WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.2-3.6-.8-3-1.2-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5-.3.6-.7.9-.5 1.2.7 1.2 1.6 2 2.8 2.6.3.2.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.2.5.3.6.4.1.2.1.8-.1 1.5Z"/></svg>
+</a>
+
+<script>
+/* ========== INTRO ========== */
+window.addEventListener('load', () => {
+  const intro = document.getElementById('intro');
+  setTimeout(() => {
+    intro.classList.add('fade-out');
+    document.body.classList.remove('loading');
+    setTimeout(() => intro.remove(), 900);
+  }, 3000);
+});
+
+/* ========== HEADER ========== */
+const header = document.getElementById('header');
+addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10));
+
+/* ========== MENU ========== */
+const menu = document.getElementById('menu'), menuBtn = document.getElementById('menuBtn');
+menuBtn.onclick = () => { menu.classList.toggle('open'); menuBtn.textContent = menu.classList.contains('open') ? '×' : '≡'; };
+menu.querySelectorAll('a').forEach(a => a.onclick = () => { menu.classList.remove('open'); menuBtn.textContent = '≡'; });
+
+/* ========== REVEAL ========== */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ========== CONTADORES ========== */
+const cio = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return; cio.unobserve(e.target);
+  e.target.querySelectorAll('[data-target]').forEach(el => {
+    const t = +el.dataset.target, s = el.dataset.suffix || '', d = 1600, st = performance.now();
+    const tick = n => {
+      const p = Math.min((n - st) / d, 1);
+      el.textContent = Math.round(t * (1 - Math.pow(1 - p, 3))) + s;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}), { threshold: .4 });
+cio.observe(document.getElementById('stats'));
+
+/* ========== FILTROS ========== */
+document.querySelectorAll('.filter-btn').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    const f = b.dataset.filter;
+    document.querySelectorAll('.port').forEach(p => {
+      p.style.display = (f === 'all' || p.dataset.cat === f) ? '' : 'none';
+    });
+  };
+});
+
+/* ========== TOAST ========== */
+const toastWrap = document.getElementById('toastWrap');
+function showToast(type, title, message) {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  const icon = type === 'success'
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>'
+    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>';
+  toast.innerHTML = `<div class="toast-icon">${icon}</div><div class="toast-body"><strong>${title}</strong><span>${message}</span></div>`;
+  toastWrap.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add('show'));
+  setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 5000);
+}
+
+/* ========== FORMULÁRIO WEB3FORMS ========== */
+const form = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+
+  submitBtn.classList.add('loading');
+  submitBtn.disabled = true;
+  const label = submitBtn.querySelector('.btn-label');
+  const originalHTML = label.innerHTML;
+  label.innerHTML = 'Enviando...';
+
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: new FormData(form)
+    });
+    const data = await response.json();
+
+    if (response.ok && data.success) {
+      showToast('success', 'Mensagem enviada', 'Retornaremos em até 24 horas úteis. Obrigado pelo contato!');
+      form.reset();
+    } else {
+      showToast('error', 'Falha no envio', data.message || 'Não foi possível enviar sua mensagem. Tente novamente.');
+    }
+  } catch (error) {
+    showToast('error', 'Erro de conexão', 'Verifique sua conexão com a internet e tente novamente.');
+  } finally {
+    submitBtn.classList.remove('loading');
+    submitBtn.disabled = false;
+    label.innerHTML = originalHTML;
+  }
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
