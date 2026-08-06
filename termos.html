@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Termos de Uso | Lâmpada Digital — Contrato de Prestação de Serviços</title>
+<meta name="description" content="Termos de Uso da Lâmpada Digital. Regras para utilização do site e contratação de serviços de design e desenvolvimento digital.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://lampadadigital.com.br/termos-de-uso.html">
+<link rel="icon" type="image/png" href="icone.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0a0a0a; --bg2:#0f0f0f; --card:#141414; --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
+  --yellow:#E8C547; --yellow-soft:rgba(232,197,71,.12); --gold:linear-gradient(180deg,#F5D76E,#D4A92E);
+  --text:#EDEDED; --muted:#8A8A8A; --muted-2:#B5B5B5;
+  --r:14px; --tr:.3s cubic-bezier(.2,.7,.3,1);
+  --serif:'Playfair Display', Georgia, serif;
+  --sans:'Inter', system-ui, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:var(--yellow);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;transition:var(--tr)}
+a:hover{color:#F5D76E;text-decoration-color:#F5D76E}
+.container{width:min(820px,92%);margin-inline:auto}
+::selection{background:var(--yellow);color:#111}
+
+/* HEADER */
+header{position:fixed;inset:0 0 auto;z-index:100;padding:20px 0;background:rgba(10,10,10,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:1180px;width:92%;margin:0 auto}
+.brand{display:flex;align-items:center;gap:.85rem;text-decoration:none;color:var(--text)}
+.brand:hover{color:var(--text)}
+.brand-img{height:44px;width:44px;object-fit:cover;object-position:center;mix-blend-mode:screen}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-text strong{letter-spacing:.28em;font-weight:700;font-size:.9rem}
+.brand-text small{color:var(--yellow);letter-spacing:.48em;font-weight:500;font-size:.6rem;margin-top:3px}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--muted-2);text-decoration:none;font-size:.85rem;font-weight:500;padding:.55rem 1.1rem;border:1px solid var(--line-2);border-radius:999px;transition:var(--tr)}
+.back-link:hover{color:var(--yellow);border-color:var(--yellow);text-decoration:none}
+.back-link svg{width:14px;height:14px}
+
+/* HERO */
+.policy-hero{padding:160px 0 60px;position:relative;border-bottom:1px solid var(--line);
+  background:radial-gradient(60% 45% at 70% 10%,rgba(232,197,71,.08),transparent 70%),
+             radial-gradient(40% 35% at 15% 80%,rgba(232,197,71,.04),transparent 70%)}
+.kicker{display:inline-flex;align-items:center;gap:.8rem;color:var(--yellow);font-weight:500;font-size:.75rem;letter-spacing:.32em;text-transform:uppercase;margin-bottom:1.4rem}
+.kicker::before{content:"";width:40px;height:1px;background:var(--yellow)}
+.policy-hero h1{font-family:var(--serif);font-size:clamp(2.2rem,4.8vw,3.6rem);font-weight:700;line-height:1.1;letter-spacing:-.01em;margin-bottom:1.4rem;max-width:780px}
+.policy-hero h1 span{color:var(--yellow);font-style:italic}
+.policy-hero .lead{color:var(--muted-2);font-size:1.08rem;max-width:720px;line-height:1.7}
+.policy-hero .lead strong{color:var(--text);font-weight:600}
+.policy-meta{display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:2.4rem;padding-top:2rem;border-top:1px solid var(--line)}
+.meta-item{display:flex;flex-direction:column;gap:.3rem}
+.meta-item strong{font-size:.7rem;color:var(--yellow);letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+.meta-item span{font-size:.9rem;color:var(--text)}
+.compliance-badges{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
+.badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .9rem;background:var(--card);border:1px solid var(--line-2);border-radius:999px;font-size:.75rem;color:var(--muted-2);font-weight:500;letter-spacing:.05em}
+.badge svg{width:14px;height:14px;color:var(--yellow)}
+.badge strong{color:var(--yellow);font-weight:700}
+
+/* TOC */
+.toc{background:var(--card);border:1px solid var(--line-2);border-radius:var(--r);padding:2.2rem 2.4rem;margin:60px 0;position:relative;overflow:hidden}
+.toc::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--yellow)}
+.toc h2{font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:.4rem;color:var(--text)}
+.toc > p{font-size:.85rem;color:var(--muted);margin-bottom:1.4rem}
+.toc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.3rem 2rem;list-style:none;counter-reset:toc-item}
+.toc-grid li{counter-increment:toc-item}
+.toc-grid a{display:flex;align-items:baseline;gap:.6rem;padding:.5rem 0;color:var(--muted-2);text-decoration:none;font-size:.88rem;transition:var(--tr);border-bottom:1px solid transparent}
+.toc-grid a:hover{color:var(--yellow);border-bottom-color:rgba(232,197,71,.3)}
+.toc-grid a::before{content:counter(toc-item,decimal-leading-zero);color:var(--yellow);font-family:var(--serif);font-weight:700;font-size:.8rem;min-width:1.6rem}
+
+/* ARTICLE */
+article{padding:30px 0 80px}
+article section{margin-bottom:60px;padding-bottom:60px;border-bottom:1px solid var(--line);scroll-margin-top:100px}
+article section:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+article h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;line-height:1.2;margin-bottom:1.6rem;color:var(--text);display:flex;align-items:baseline;gap:1rem;padding-top:.3rem}
+article h2 .num{color:var(--yellow);font-size:1rem;font-weight:600;letter-spacing:.1em;font-family:var(--sans);min-width:2.2rem}
+article h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--text);margin:1.8rem 0 .7rem}
+article p{color:var(--muted-2);font-size:.95rem;margin-bottom:1.1rem;line-height:1.8}
+article p strong{color:var(--text);font-weight:600}
+article ul,article ol{margin:1rem 0 1.4rem 1.4rem;color:var(--muted-2);font-size:.95rem}
+article ul li,article ol li{margin:.5rem 0;line-height:1.7;padding-left:.3rem}
+article ul li strong,article ol li strong{color:var(--text);font-weight:600}
+article ul li{list-style:none;position:relative;padding-left:1.4rem}
+article ul li::before{content:"";position:absolute;left:0;top:.75rem;width:16px;height:1px;background:var(--yellow)}
+
+/* TABLES */
+.table-wrap{overflow-x:auto;margin:1.5rem 0;border:1px solid var(--line-2);border-radius:var(--r);background:var(--card)}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+table thead{background:var(--yellow-soft)}
+table th{text-align:left;padding:1rem 1.2rem;color:var(--yellow);font-weight:600;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;border-bottom:1px solid var(--line-2);font-family:var(--sans)}
+table td{padding:1rem 1.2rem;border-bottom:1px solid var(--line);color:var(--muted-2);vertical-align:top}
+table tr:last-child td{border-bottom:0}
+table tr:hover td{background:rgba(232,197,71,.03)}
+table td:first-child{color:var(--text);font-weight:500}
+
+/* HIGHLIGHT */
+.highlight{background:var(--card);border-left:3px solid var(--yellow);border-radius:0 var(--r) var(--r) 0;padding:1.3rem 1.5rem;margin:1.5rem 0;position:relative}
+.highlight p{margin:0;color:var(--text);font-size:.92rem;line-height:1.7}
+.highlight strong{color:var(--yellow);font-weight:600}
+.highlight a{color:var(--yellow)}
+.highlight.alert{border-left-color:#f87171;background:rgba(248,113,113,.06)}
+.highlight.alert strong{color:#f87171}
+.highlight.info{border-left-color:#60a5fa;background:rgba(96,165,250,.06)}
+.highlight.info strong{color:#60a5fa}
+.highlight.warn{border-left-color:#fb923c;background:rgba(251,146,60,.06)}
+.highlight.warn strong{color:#fb923c}
+
+/* CARDS */
+.controller-card{background:linear-gradient(135deg,rgba(232,197,71,.08),rgba(232,197,71,.02));border:1px solid rgba(232,197,71,.25);border-radius:var(--r);padding:2rem;margin:1.5rem 0;position:relative;overflow:hidden}
+.controller-card::before{content:"";position:absolute;top:-40%;right:-20%;width:300px;height:300px;background:radial-gradient(circle,rgba(232,197,71,.1),transparent 70%);pointer-events:none}
+.controller-card p{color:var(--muted-2);font-size:.92rem;line-height:1.8;position:relative;margin-bottom:.4rem}
+.controller-card p strong{color:var(--text);display:inline-block;min-width:130px}
+.controller-card p a{color:var(--yellow)}
+
+/* GRID ITEMS */
+.items-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin:1.5rem 0;list-style:none;padding:0}
+.items-grid li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.2rem;font-size:.88rem;color:var(--muted-2);line-height:1.5;display:flex;gap:.8rem;align-items:flex-start;transition:var(--tr)}
+.items-grid li:hover{border-color:rgba(232,197,71,.35);background:var(--bg2)}
+.items-grid .num{color:var(--yellow);font-family:var(--serif);font-weight:700;font-size:.85rem;min-width:1.4rem;letter-spacing:.05em}
+.items-grid strong{color:var(--text);font-weight:600}
+
+/* CTA */
+.cta{background:var(--yellow);border-radius:var(--r);padding:3.5rem 2.5rem;text-align:center;color:#111;margin:70px 0 0;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;top:-60%;right:-10%;width:70%;height:200%;background:radial-gradient(circle,rgba(255,255,255,.2),transparent 60%);pointer-events:none}
+.cta h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;margin-bottom:.6rem;position:relative}
+.cta p{color:#2a2a2a;font-weight:500;margin-bottom:1.8rem;position:relative;font-size:.95rem}
+.cta a.btn-cta{display:inline-flex;align-items:center;gap:.6rem;background:#111;color:var(--yellow);padding:.95rem 1.7rem;border-radius:999px;font-weight:600;font-size:.9rem;text-decoration:none;transition:var(--tr);position:relative}
+.cta a.btn-cta:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,.4);color:var(--yellow);background:#111}
+.cta a.btn-cta svg{width:14px;height:14px}
+
+/* FOOTER */
+footer.site{background:#050505;border-top:1px solid var(--line);padding:60px 0 30px;margin-top:80px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.foot-brand{display:flex;align-items:center;gap:.85rem;margin-bottom:1.2rem;text-decoration:none;color:var(--text)}
+.foot-brand-img{height:56px;width:56px;object-fit:cover;object-position:center;mix-blend-mode:screen}
+.foot-grid p{color:var(--muted-2);font-size:.88rem;line-height:1.7;max-width:340px}
+.foot-grid h4{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.2rem;font-weight:600}
+.foot-grid a{color:var(--muted-2);text-decoration:none;font-size:.88rem;display:block;margin:.5rem 0;transition:color .3s}
+.foot-grid a:hover{color:var(--yellow)}
+.foot-bottom{border-top:1px solid var(--line);padding-top:1.4rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:#666;font-size:.78rem}
+.foot-bottom a{color:#666;text-decoration:none}
+.foot-bottom a:hover{color:var(--yellow)}
+
+.compliance-footer{margin-top:40px;padding:2rem;background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+.compliance-footer h3{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.compliance-footer h3 svg{width:18px;height:18px;color:var(--yellow)}
+.compliance-footer ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,1fr);gap:.4rem}
+.compliance-footer ul li{font-size:.8rem;color:var(--muted);padding-left:1.2rem;position:relative;line-height:1.5}
+.compliance-footer ul li::before{content:"✓";position:absolute;left:0;color:var(--yellow);font-weight:700}
+
+/* RESPONSIVE */
+@media(max-width:760px){
+  .policy-hero{padding:130px 0 50px}
+  .toc-grid{grid-template-columns:1fr}
+  .items-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr;gap:2rem}
+  .compliance-footer ul{grid-template-columns:1fr}
+  .policy-meta{gap:1rem}
+  .meta-item{flex:1;min-width:120px}
+  article h2{font-size:1.4rem;flex-wrap:wrap;gap:.5rem}
+  table{font-size:.8rem}
+  table th,table td{padding:.8rem .7rem}
+  .cta{padding:2.5rem 1.5rem}
+}
+@media(max-width:480px){
+  .policy-meta{flex-direction:column;gap:.8rem}
+  .compliance-badges{flex-direction:column;align-items:flex-start}
+  .controller-card p strong{display:block;min-width:0;margin-bottom:.1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="nav">
+    <a class="brand" href="index.html" aria-label="Lâmpada Digital — Voltar ao início">
+      <img class="brand-img" src="icone.png" alt="Lâmpada Digital" width="44" height="44">
+      <span class="brand-text"><strong>LAMPADA</strong><small>DIGITAL</small></span>
+    </a>
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Voltar ao site
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="policy-hero">
+  <div class="container">
+    <span class="kicker">Documento Legal · Termos</span>
+    <h1>Termos de <span>Uso</span></h1>
+    <p class="lead">Os presentes <strong>Termos de Uso</strong> regulamentam a utilização do site <strong>lampadadigital.com.br</strong>, bem como a contratação dos serviços de design, desenvolvimento e estratégia digital oferecidos pela <strong>Lâmpada Digital</strong>.</p>
+    <p class="lead">Ao navegar pelo site, preencher o formulário de contato ou contratar qualquer serviço, você declara estar ciente e de acordo com todas as condições aqui estabelecidas.</p>
+
+    <div class="policy-meta">
+      <div class="meta-item"><strong>Última atualização</strong><span>06 de agosto de 2026</span></div>
+      <div class="meta-item"><strong>Versão</strong><span>1.0</span></div>
+      <div class="meta-item"><strong>Idioma</strong><span>Português (Brasil)</span></div>
+      <div class="meta-item"><strong>Status</strong><span>Vigente</span></div>
+    </div>
+
+    <div class="compliance-badges">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>CDC <strong>Lei 8.078/1990</strong></span>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>LGPD <strong>Lei 13.709/2018</strong></span>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>Marco Civil <strong>Lei 12.965/2014</strong></span>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>CC/2002 <strong>Lei 10.406/2002</strong></span>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main>
+  <div class="container">
+
+    <!-- TOC -->
+    <nav class="toc" aria-label="Índice dos Termos de Uso">
+      <h2>Índice</h2>
+      <p>Clique em qualquer tópico para ir diretamente à seção.</p>
+      <ol class="toc-grid">
+        <li><a href="#s1">Aceitação dos termos</a></li>
+        <li><a href="#s2">Definições</a></li>
+        <li><a href="#s3">Objeto e serviços oferecidos</a></li>
+        <li><a href="#s4">Capacidade para contratação</a></li>
+        <li><a href="#s5">Processo de contratação</a></li>
+        <li><a href="#s6">Obrigações do cliente</a></li>
+        <li><a href="#s7">Obrigações da Lâmpada Digital</a></li>
+        <li><a href="#s8">Prazos de entrega</a></li>
+        <li><a href="#s9">Pagamento e valores</a></li>
+        <li><a href="#s10">Propriedade intelectual</a></li>
+        <li><a href="#s11">Confidencialidade</a></li>
+        <li><a href="#s12">Garantias e limitação de responsabilidade</a></li>
+        <li><a href="#s13">Política de cancelamento e reembolso</a></li>
+        <li><a href="#s14">Rescisão contratual</a></li>
+        <li><a href="#s15">Uso aceitável do site</a></li>
+        <li><a href="#s16">Links de terceiros</a></li>
+        <li><a href="#s17">Modificações nos termos</a></li>
+        <li><a href="#s18">Disposições gerais e foro</a></li>
+      </ol>
+    </nav>
+
+    <article>
+
+      <!-- 1 -->
+      <section id="s1">
+        <h2><span class="num">01.</span>Aceitação dos termos</h2>
+        <p>Os presentes Termos de Uso constituem um acordo legal entre você ("Cliente", "Usuário" ou "Titular") e a <strong>Lâmpada Digital</strong> ("Prestadora" ou "Contratada"), regulando:</p>
+        <ul>
+          <li><strong>A utilização do site</strong> lampadadigital.com.br e todos os seus conteúdos, funcionalidades e serviços digitais.</li>
+          <li><strong>A contratação de serviços</strong> de design, desenvolvimento web, identidade visual, landing pages, social media, SEO e demais soluções oferecidas pela Prestadora.</li>
+        </ul>
+        <p>Ao acessar, navegar ou utilizar qualquer serviço, você declara:</p>
+        <ul>
+          <li>Ter lido, compreendido e aceito integralmente estes Termos;</li>
+          <li>Estar de acordo com a <a href="politica-de-privacidade.html">Política de Privacidade</a> da Lâmpada Digital;</li>
+          <li>Possuir capacidade civil plena para celebrar contratos, ou estar devidamente representado.</li>
+        </ul>
+        <div class="highlight warn">
+          <p><strong>Importante:</strong> caso não concorde com qualquer disposição destes Termos, solicitamos que não utilize o site nem contrate nossos serviços.</p>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section id="s2">
+        <h2><span class="num">02.</span>Definições</h2>
+        <p>Para efeitos destes Termos, aplicam-se as seguintes definições:</p>
+        <ul>
+          <li><strong>Prestadora / Contratada:</strong> Lâmpada Digital, pessoa jurídica responsável pela prestação dos serviços.</li>
+          <li><strong>Cliente / Contratante:</strong> pessoa física ou jurídica que contrata os serviços da Prestadora.</li>
+          <li><strong>Usuário:</strong> qualquer pessoa que acesse o site, independentemente de contratar serviços.</li>
+          <li><strong>Projeto:</strong> conjunto de entregas contratadas, descritas em proposta comercial aprovada.</li>
+          <li><strong>Proposta Comercial:</strong> documento com escopo, valores, prazos e condições específicas do Projeto.</li>
+          <li><strong>Entrega:</strong> produto final do Projeto (site, logo, identidade visual, landing page, etc.).</li>
+          <li><strong>Material do Cliente:</strong> textos, imagens, logotipos, marcas, dados e demais materiais fornecidos pelo Cliente para execução do Projeto.</li>
+        </ul>
+      </section>
+
+      <!-- 3 -->
+      <section id="s3">
+        <h2><span class="num">03.</span>Objeto e serviços oferecidos</h2>
+        <p>A Lâmpada Digital oferece serviços profissionais de design e desenvolvimento digital, incluindo, mas não se limitando a:</p>
+        <ul class="items-grid">
+          <li><span class="num">01</span><div><strong>Sites institucionais</strong> personalizados e responsivos</div></li>
+          <li><span class="num">02</span><div><strong>Landing pages</strong> de alta conversão para campanhas</div></li>
+          <li><span class="num">03</span><div><strong>Identidade visual</strong> e criação de logos</div></li>
+          <li><span class="num">04</span><div><strong>Social media</strong> e produção de conteúdo</div></li>
+          <li><span class="num">05</span><div><strong>SEO técnico</strong> e otimização de performance</div></li>
+          <li><span class="num">06</span><div><strong>Suporte técnico</strong> e manutenção contínua</div></li>
+        </ul>
+        <p>O escopo específico de cada Projeto é detalhado em <strong>Proposta Comercial</strong> individual, que passa a integrar estes Termos após a aprovação pelo Cliente.</p>
+      </section>
+
+      <!-- 4 -->
+      <section id="s4">
+        <h2><span class="num">04.</span>Capacidade para contratação</h2>
+        <p>Os serviços da Lâmpada Digital são destinados a:</p>
+        <ul>
+          <li><strong>Pessoas físicas</strong> maiores de 18 anos e em pleno gozo de capacidade civil;</li>
+          <li><strong>Pessoas jurídicas</strong> regularmente constituídas, representadas por seus sócios ou procuradores legalmente habilitados.</li>
+        </ul>
+        <p>Menores de idade ou incapazes só poderão utilizar os serviços mediante representação ou assistência legal, sendo os representantes responsáveis por todas as obrigações assumidas.</p>
+        <p>A Lâmpada Digital reserva-se o direito de recusar a prestação de serviços a qualquer pessoa, a seu exclusivo critério, sem necessidade de justificativa, respeitada a legislação aplicável.</p>
+      </section>
+
+      <!-- 5 -->
+      <section id="s5">
+        <h2><span class="num">05.</span>Processo de contratação</h2>
+
+        <h3>5.1 Etapas da contratação</h3>
+        <ol>
+          <li><strong>Solicitação de proposta:</strong> o Cliente preenche o formulário de contato com informações básicas sobre o projeto desejado.</li>
+          <li><strong>Reunião de briefing:</strong> reunião online para entendimento aprofundado do negócio, objetivos e necessidades.</li>
+          <li><strong>Proposta comercial:</strong> a Prestadora elabora e envia proposta com escopo, valores, prazos e condições.</li>
+          <li><strong>Aprovação:</strong> o Cliente formaliza a aceitação por e-mail ou assinatura eletrônica.</li>
+          <li><strong>Pagamento da entrada:</strong> confirmação do primeiro pagamento inicia a execução do Projeto.</li>
+          <li><strong>Execução e entregas:</strong> desenvolvimento conforme cronograma estabelecido na proposta.</li>
+          <li><strong>Aprovação final:</strong> o Cliente valida as entregas e autoriza a publicação ou entrega definitiva.</li>
+        </ol>
+
+        <h3>5.2 Formalização</h3>
+        <p>A contratação considera-se formalizada quando:</p>
+        <ul>
+          <li>A proposta comercial é aceita por escrito (e-mail ou assinatura digital);</li>
+          <li>O pagamento inicial é confirmado;</li>
+          <li>O briefing inicial é aprovado por ambas as partes.</li>
+        </ul>
+        <div class="highlight info">
+          <p><strong>Observação:</strong> a proposta comercial aprovada integra estes Termos de Uso, prevalecendo sobre eles em caso de disposições específicas conflitantes.</p>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section id="s6">
+        <h2><span class="num">06.</span>Obrigações do cliente</h2>
+        <p>São obrigações do Cliente:</p>
+        <ul>
+          <li><strong>Fornecer informações verdadeiras e completas</strong> sobre seu negócio, público-alvo e objetivos.</li>
+          <li><strong>Entregar o Material do Cliente</strong> (textos, imagens, logotipos, acessos, domínios, hospedagens) dentro dos prazos acordados.</li>
+          <li><strong>Garantir que possui direitos</strong> sobre todo o Material do Cliente fornecido, isentando a Prestadora de qualquer responsabilidade por violação de direitos de terceiros.</li>
+          <li><strong>Aprovar entregas e revisões</strong> dentro dos prazos estabelecidos no cronograma.</li>
+          <li><strong>Efetuar os pagamentos</strong> nos valores e datas combinados.</li>
+          <li><strong>Designar um responsável</strong> (ponto focal) para aprovações e comunicações durante o Projeto.</li>
+          <li><strong>Manter conduta respeitosa</strong> e profissional em todas as interações com a equipe da Prestadora.</li>
+        </ul>
+        <div class="highlight warn">
+          <p><strong>Atrasos do Cliente:</strong> eventuais atrasos na entrega de materiais, aprovações ou pagamentos poderão acarretar prorrogação automática dos prazos do Projeto, sem ônus para a Prestadora.</p>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section id="s7">
+        <h2><span class="num">07.</span>Obrigações da Lâmpada Digital</h2>
+        <p>São obrigações da Prestadora:</p>
+        <ul>
+          <li><strong>Executar os serviços</strong> com diligência, qualidade técnica e padrão profissional.</li>
+          <li><strong>Cumprir os prazos</strong> estabelecidos na proposta comercial, ressalvados os casos de força maior ou atrasos imputáveis ao Cliente.</li>
+          <li><strong>Manter sigilo</strong> sobre todas as informações confidenciais do Cliente.</li>
+          <li><strong>Comunicar proativamente</strong> sobre o andamento do Projeto, incluindo eventuais obstáculos ou mudanças de escopo.</li>
+          <li><strong>Realizar revisões</strong> conforme o número estabelecido na proposta comercial.</li>
+          <li><strong>Entregar os arquivos finais</strong> em formatos adequados e organizados.</li>
+          <li><strong>Fornecer suporte</strong> conforme contratado, durante o período estabelecido.</li>
+        </ul>
+      </section>
+
+      <!-- 8 -->
+      <section id="s8">
+        <h2><span class="num">08.</span>Prazos de entrega</h2>
+
+        <h3>8.1 Prazos médios de referência</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tipo de projeto</th><th>Prazo médio</th><th>Observações</th></tr></thead>
+            <tbody>
+              <tr><td>Identidade visual / Logo</td><td>5 a 10 dias úteis</td><td>Após aprovação do briefing</td></tr>
+              <tr><td>Landing page simples</td><td>5 a 10 dias úteis</td><td>Conteúdo fornecido pelo Cliente</td></tr>
+              <tr><td>Site institucional</td><td>7 a 15 dias úteis</td><td>Conforme complexidade</td></tr>
+              <tr><td>E-commerce / sistemas</td><td>30 a 60 dias úteis</td><td>Conforme escopo</td></tr>
+              <tr><td>Social media (mensal)</td><td>Entrega contínua</td><td>Conforme cronograma mensal</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>8.2 Contagem de prazos</h3>
+        <p>Os prazos começam a contar a partir da <strong>data de confirmação do pagamento inicial</strong> e do recebimento integral do briefing e do Material do Cliente necessário para o início dos trabalhos.</p>
+
+        <h3>8.3 Prorrogação automática</h3>
+        <p>Os prazos serão automaticamente prorrogados em caso de:</p>
+        <ul>
+          <li>Atraso do Cliente na entrega de materiais ou aprovações;</li>
+          <li>Solicitação de mudanças de escopo não previstas na proposta original;</li>
+          <li>Casos de força maior (eventos climáticos, pandemias, greves, falhas de infraestrutura de terceiros).</li>
+        </ul>
+      </section>
+
+      <!-- 9 -->
+      <section id="s9">
+        <h2><span class="num">09.</span>Pagamento e valores</h2>
+
+        <h3>9.1 Valores</h3>
+        <p>Os valores dos serviços são definidos em <strong>proposta comercial individual</strong>, com base na complexidade, escopo, prazos e recursos necessários para cada Projeto.</p>
+
+        <h3>9.2 Formas de pagamento</h3>
+        <ul>
+          <li><strong>PIX</strong></li>
+          <li><strong>Transferência bancária</strong> (TED/DOC)</li>
+          <li><strong>Cartão de crédito</strong> (em até 12x, com acréscimos da operadora)</li>
+          <li><strong>Boleto bancário</strong> (a combinar)</li>
+        </ul>
+
+        <h3>9.3 Condições padrão</h3>
+        <p>Salvo disposição em contrário na proposta comercial:</p>
+        <ul>
+          <li><strong>Entrada de 50%</strong> no aceite da proposta</li>
+          <li><strong>50% restantes</strong> na aprovação final ou publicação do projeto</li>
+        </ul>
+
+        <h3>9.4 Atrasos no pagamento</h3>
+        <p>Pagamentos em atraso estão sujeitos a:</p>
+        <ul>
+          <li>Multa de 2% sobre o valor devido;</li>
+          <li>Juros de mora de 1% ao mês, pro rata die;</li>
+          <li>Suspensão dos trabalhos até a regularização;</li>
+          <li>Protesto do título e negativação, após 30 dias de inadimplência.</li>
+        </ul>
+      </section>
+
+      <!-- 10 -->
+      <section id="s10">
+        <h2><span class="num">10.</span>Propriedade intelectual</h2>
+
+        <h3>10.1 Direitos do Cliente</h3>
+        <p>Após a <strong>quitação integral</strong> dos valores contratados, o Cliente passa a ser titular dos direitos patrimoniais sobre as <strong>entregas finais</strong> do Projeto, podendo utilizá-las livremente para fins comerciais.</p>
+
+        <h3>10.2 Direitos da Prestadora</h3>
+        <p>Permanecem de propriedade da Lâmpada Digital:</p>
+        <ul>
+          <li><strong>Ferramentas, metodologias, bibliotecas e códigos-fonte genéricos</strong> desenvolvidos previamente ou durante o Projeto, que não sejam específicos ao Cliente;</li>
+          <li><strong>Arquivos de trabalho</strong> (rascunhos, versões intermediárias, arquivos-fonte abertos), salvo se expressamente incluídos na proposta comercial;</li>
+          <li><strong>Direitos morais</strong> de autoria, podendo a Prestadora assinar os trabalhos como criadora.</li>
+        </ul>
+
+        <h3>10.3 Uso do portfólio</h3>
+        <p>A Lâmpada Digital reserva-se o direito de incluir o Projeto em seu portfólio, site, redes sociais e materiais de divulgação, como <strong>case de sucesso</strong>, salvo solicitação expressa e justificada de sigilo por parte do Cliente.</p>
+
+        <h3>10.4 Créditos</h3>
+        <p>A Prestadora poderá manter, em local discreto dos sites desenvolvidos, um crédito do tipo <em>"Desenvolvido por Lâmpada Digital"</em>, com link para seu site, salvo acordo em contrário.</p>
+
+        <div class="highlight warn">
+          <p><strong>Atenção:</strong> o não pagamento integral dos valores contratados impede a transferência dos direitos patrimoniais sobre as entregas ao Cliente.</p>
+        </div>
+      </section>
+
+      <!-- 11 -->
+      <section id="s11">
+        <h2><span class="num">11.</span>Confidencialidade</h2>
+        <p>Ambas as partes comprometem-se a manter <strong>sigilo absoluto</strong> sobre todas as informações confidenciais trocadas durante a execução do Projeto, incluindo:</p>
+        <ul>
+          <li>Estratégias comerciais, planos de negócio e dados financeiros;</li>
+          <li>Listas de clientes, fornecedores e parceiros;</li>
+          <li>Informações técnicas, fórmulas, processos e know-how;</li>
+          <li>Dados pessoais tratados em conformidade com a LGPD e o GDPR.</li>
+        </ul>
+        <p>A obrigação de confidencialidade permanece vigente por <strong>5 anos</strong> após o término do contrato, salvo informações que:</p>
+        <ul>
+          <li>Sejam ou tornem-se públicas por meios lícitos;</li>
+          <li>Sejam exigidas por lei, decisão judicial ou autoridade competente;</li>
+          <li>Já estivessem em posse legítima da parte receptora antes do contrato.</li>
+        </ul>
+      </section>
+
+      <!-- 12 -->
+      <section id="s12">
+        <h2><span class="num">12.</span>Garantias e limitação de responsabilidade</h2>
+
+        <h3>12.1 Garantias oferecidas</h3>
+        <p>A Lâmpada Digital garante que:</p>
+        <ul>
+          <li>Os serviços serão executados com <strong>padrão profissional</strong> e técnica adequada;</li>
+          <li>As entregas estarão em conformidade com o <strong>escopo aprovado</strong> na proposta comercial;</li>
+          <li>Os sites desenvolvidos serão <strong>responsivos e otimizados</strong> para os principais navegadores modernos;</li>
+          <li>Haverá <strong>correção de bugs</strong> identificados em até 30 dias após a entrega, sem custo adicional.</li>
+        </ul>
+
+        <h3>12.2 Ausência de garantias de resultado</h3>
+        <div class="highlight alert">
+          <p><strong>Importante:</strong> a Lâmpada Digital <strong>não garante resultados comerciais específicos</strong> (vendas, leads, posicionamento no Google, crescimento de seguidores, etc.). Tais resultados dependem de múltiplos fatores externos ao escopo da Prestadora (mercado, concorrência, qualidade do produto do Cliente, investimentos em mídia, etc.).</p>
+        </div>
+
+        <h3>12.3 Limitação de responsabilidade</h3>
+        <p>Na máxima extensão permitida pela legislação aplicável, a Lâmpada Digital <strong>não será responsável</strong> por:</p>
+        <ul>
+          <li><strong>Lucros cessantes</strong>, perdas de receita, interrupção de negócios ou perda de dados;</li>
+          <li><strong>Danos indiretos, incidentais ou consequenciais</strong> decorrentes do uso ou da impossibilidade de uso das entregas;</li>
+          <li><strong>Conteúdo do Material do Cliente</strong>, incluindo sua legalidade, veracidade e titularidade;</li>
+          <li><strong>Problemas de terceiros</strong> (hospedagem, domínio, APIs externas, gateways de pagamento);</li>
+          <li><strong>Alterações em políticas de plataformas</strong> (Google, Meta, redes sociais) que afetem resultados;</li>
+          <li><strong>Uso indevido</strong> das entregas pelo Cliente ou por terceiros.</li>
+        </ul>
+
+        <h3>12.4 Teto de indenização</h3>
+        <p>A responsabilidade total da Lâmpada Digital, por qualquer causa, <strong>nunca excederá o valor total efetivamente pago pelo Cliente</strong> pelo Projeto que originou a reclamação, nos 12 meses anteriores ao fato gerador.</p>
+      </section>
+
+      <!-- 13 -->
+      <section id="s13">
+        <h2><span class="num">13.</span>Política de cancelamento e reembolso</h2>
+
+        <h3>13.1 Direito de arrependimento (CDC, art. 49)</h3>
+        <p>Para Clientes <strong>pessoas físicas</strong>, é garantido o direito de arrependimento em até <strong>7 dias corridos</strong> contados da contratação, desde que <strong>nenhum serviço tenha sido efetivamente iniciado</strong>. Neste caso, o valor pago será integralmente devolvido.</p>
+
+        <h3>13.2 Cancelamento pelo Cliente</h3>
+        <p>Após o início dos trabalhos, em caso de cancelamento pelo Cliente:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Etapa do projeto</th><th>Condição de reembolso</th></tr></thead>
+            <tbody>
+              <tr><td>Antes do início efetivo</td><td>Devolução integral, descontados custos administrativos (até 10%)</td></tr>
+              <tr><td>Após início / briefing aprovado</td><td>Retenção de 30% do valor total como multa rescisória</td></tr>
+              <tr><td>Após primeira entrega</td><td>Retenção proporcional ao trabalho executado + 20% de multa</td></tr>
+              <tr><td>Após aprovação de mais de 50% do escopo</td><td>Pagamento integral do valor contratado</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>13.3 Cancelamento pela Prestadora</h3>
+        <p>A Lâmpada Digital poderá cancelar o contrato e suspender os serviços em caso de:</p>
+        <ul>
+          <li>Inadimplemento do Cliente por mais de 15 dias;</li>
+          <li>Violação substancial das obrigações pelo Cliente;</li>
+          <li>Conduta desrespeitosa, ofensiva ou ilegal;</li>
+          <li>Fornecimento de informações falsas ou materiais ilícitos.</li>
+        </ul>
+        <p>Nestas hipóteses, não haverá reembolso de valores já pagos, que servirão como indenização pelo trabalho executado.</p>
+
+        <h3>13.4 Procedimento de reembolso</h3>
+        <p>Os reembolsos serão processados em até <strong>30 dias corridos</strong>, na mesma forma de pagamento original, após formalização do cancelamento por escrito.</p>
+      </section>
+
+      <!-- 14 -->
+      <section id="s14">
+        <h2><span class="num">14.</span>Rescisão contratual</h2>
+
+        <h3>14.1 Hipóteses de rescisão</h3>
+        <p>O contrato poderá ser rescindido por qualquer das partes mediante:</p>
+        <ul>
+          <li><strong>Aviso prévio de 30 dias</strong>, por escrito, respeitados os direitos já adquiridos;</li>
+          <li><strong>Descumprimento substancial</strong> de qualquer cláusula por uma das partes, não sanado em 15 dias após notificação;</li>
+          <li><strong>Força maior</strong> que impeça a execução do contrato por mais de 60 dias;</li>
+          <li><strong>Falência, recuperação judicial</strong> ou dissolução de uma das partes.</li>
+        </ul>
+
+        <h3>14.2 Consequências da rescisão</h3>
+        <p>Em caso de rescisão:</p>
+        <ul>
+          <li>O Cliente pagará proporcionalmente pelos serviços efetivamente executados até a data da rescisão;</li>
+          <li>A Prestadora entregará todo o material desenvolvido até então, proporcional ao valor pago;</li>
+          <li>As obrigações de confidencialidade, propriedade intelectual e limitação de responsabilidade permanecem vigentes.</li>
+        </ul>
+      </section>
+
+      <!-- 15 -->
+      <section id="s15">
+        <h2><span class="num">15.</span>Uso aceitável do site</h2>
+        <p>Ao navegar pelo site da Lâmpada Digital, o Usuário <strong>não poderá</strong>:</p>
+        <ul>
+          <li>Utilizar o site para fins <strong>ilícitos, ilegais ou não autorizados</strong>;</li>
+          <li>Realizar <strong>engenharia reversa</strong>, descompilação ou cópia do código-fonte;</li>
+          <li>Tentar <strong>invadir, hackear</strong> ou comprometer a segurança do site;</li>
+          <li>Coletar dados de outros usuários ou do site por meios automatizados (scraping);</li>
+          <li>Distribuir <strong>malware, vírus</strong> ou qualquer código malicioso;</li>
+          <li>Enviar <strong>spam, phishing</strong> ou comunicações não solicitadas utilizando o domínio;</li>
+          <li>Violar <strong>direitos de propriedade intelectual</strong> da Lâmpada Digital ou de terceiros;</li>
+          <li>Praticar atos que possam <strong>sobrecarregar</strong> a infraestrutura do site.</li>
+        </ul>
+        <p>A violação destas regras poderá resultar no bloqueio do acesso ao site, sem prejuízo das medidas judiciais cabíveis.</p>
+      </section>
+
+      <!-- 16 -->
+      <section id="s16">
+        <h2><span class="num">16.</span>Links de terceiros</h2>
+        <p>O site da Lâmpada Digital pode conter <strong>links para sites externos</strong> (redes sociais, portfólios, serviços de terceiros, plataformas parceiras).</p>
+        <p>Estes links são fornecidos apenas para conveniência do usuário, e a Lâmpada Digital:</p>
+        <ul>
+          <li><strong>Não controla, endossa ou se responsabiliza</strong> pelo conteúdo, políticas ou práticas de sites de terceiros;</li>
+          <li><strong>Não garante</strong> a disponibilidade, veracidade ou segurança desses sites;</li>
+          <li>Recomenda que o usuário leia os termos e políticas de cada site externo antes de utilizá-lo.</li>
+        </ul>
+        <p>O acesso a sites externos é feito por conta e risco do usuário.</p>
+      </section>
+
+      <!-- 17 -->
+      <section id="s17">
+        <h2><span class="num">17.</span>Modificações nos termos</h2>
+        <p>A Lâmpada Digital reserva-se o direito de <strong>atualizar estes Termos de Uso</strong> a qualquer momento, para refletir mudanças em nossos serviços, práticas comerciais ou exigências legais.</p>
+
+        <h3>17.1 Comunicado de alterações</h3>
+        <ul>
+          <li>Alterações <strong>não substantivas</strong> serão publicadas no site com a data de atualização;</li>
+          <li>Alterações <strong>substantivas</strong> que afetem direitos de Clientes com contratos vigentes serão comunicadas por e-mail;</li>
+          <li>A utilização continuada dos serviços após a publicação de alterações implica <strong>aceitação tácita</strong> das novas condições.</li>
+        </ul>
+
+        <h3>17.2 Versão aplicável</h3>
+        <p>Para contratos já celebrados, prevalecem os Termos vigentes na <strong>data da contratação</strong>, salvo acordo em contrário entre as partes.</p>
+      </section>
+
+      <!-- 18 -->
+      <section id="s18">
+        <h2><span class="num">18.</span>Disposições gerais e foro</h2>
+
+        <h3>18.1 Tolerância</h3>
+        <p>A eventual tolerância de uma das partes quanto ao descumprimento de qualquer cláusula não constituirá novação, renúncia ou alteração do pactuado, podendo ser exigida a qualquer momento.</p>
+
+        <h3>18.2 Nulidade parcial</h3>
+        <p>Caso qualquer disposição destes Termos seja considerada nula, ilegal ou inexequível, as demais disposições permanecerão plenamente válidas e eficazes, sendo a disposição inválida automaticamente adaptada para produzir o máximo efeito jurídico possível.</p>
+
+        <h3>18.3 Integralidade</h3>
+        <p>Estes Termos, em conjunto com a proposta comercial aprovada e a Política de Privacidade, constituem o <strong>acordo integral</strong> entre as partes, substituindo quaisquer entendimentos, propostas ou acordos anteriores.</p>
+
+        <h3>18.4 Cessão</h3>
+        <p>A Lâmpada Digital poderá ceder ou transferir estes Termos a terceiros. O Cliente não poderá ceder seus direitos ou obrigações sem prévia autorização por escrito da Prestadora.</p>
+
+        <h3>18.5 Comunicações</h3>
+        <p>Todas as comunicações relacionadas a estes Termos deverão ser feitas por:</p>
+        <ul>
+          <li><strong>E-mail:</strong> contato@lampadadigital.com.br</li>
+          <li><strong>Correspondência:</strong> endereço da Prestadora constante na proposta comercial</li>
+        </ul>
+
+        <h3>18.6 Legislação aplicável e foro</h3>
+        <div class="controller-card">
+          <p><strong>Legislação:</strong> República Federativa do Brasil</p>
+          <p><strong>Lei aplicável:</strong> Lei nº 10.406/2002 (Código Civil), Lei nº 8.078/1990 (CDC), Lei nº 12.965/2014 (Marco Civil da Internet) e Lei nº 13.709/2018 (LGPD)</p>
+          <p><strong>Foro eleito:</strong> Comarca de São Paulo/SP, com exclusão de qualquer outro, por mais privilegiado que seja</p>
+        </div>
+      </section>
+
+    </article>
+
+    <!-- CTA FINAL -->
+    <section class="cta">
+      <h2>Dúvidas sobre estes Termos?</h2>
+      <p>Nossa equipe está pronta para esclarecer qualquer questão antes da contratação.</p>
+      <a href="mailto:contato@lampadadigital.com.br" class="btn-cta">
+        Falar com a equipe
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </section>
+
+    <!-- COMPLIANCE -->
+    <div class="compliance-footer">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Documento elaborado em conformidade com
+      </h3>
+      <ul>
+        <li>Lei nº 10.406/2002 (Código Civil Brasileiro)</li>
+        <li>Lei nº 8.078/1990 (Código de Defesa do Consumidor)</li>
+        <li>Lei nº 12.965/2014 (Marco Civil da Internet)</li>
+        <li>Lei nº 13.709/2018 (Lei Geral de Proteção de Dados)</li>
+        <li>Lei nº 9.610/1998 (Direitos Autorais)</li>
+        <li>Lei nº 9.279/1996 (Propriedade Industrial)</li>
+      </ul>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="container" style="width:min(1180px,92%);margin:0 auto">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="foot-brand">
+          <img class="foot-brand-img" src="icone.png" alt="Lâmpada Digital" width="56" height="56">
+          <span class="brand-text"><strong>LAMPADA</strong><small>DIGITAL</small></span>
+        </a>
+        <p>Estúdio de design e desenvolvimento digital em São Paulo. Criamos marcas, sites e experiências digitais orientadas a resultado.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <a href="index.html#servicos">Serviços</a>
+        <a href="index.html#portfolio">Portfólio</a>
+        <a href="index.html#depoimentos">Clientes</a>
+        <a href="index.html#faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="politica-de-privacidade.html">Política de Privacidade</a>
+        <a href="termos-de-uso.html">Termos de Uso</a>
+        <a href="mailto:privacidade@lampadadigital.com.br">Encarregado (DPO)</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Lâmpada Digital — CNPJ 00.000.000/0001-00. Todos os direitos reservados.</span>
+      <span><a href="politica-de-privacidade.html">Privacidade</a> · <a href="termos-de-uso.html">Termos</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
